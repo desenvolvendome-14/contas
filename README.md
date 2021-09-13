@@ -1,24 +1,38 @@
-# README
+# Contas
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Serviços responsavel pelas contas(despesas e faturas) do sistema
 
-Things you may want to cover:
+## Dependências
 
-* Ruby version
+- Ruby 3.0.4
+- Rails 6.1.4
+- Postgres >=10.10
 
-* System dependencies
+Caso não tenha postgres instalado, tem o arquivo `docker-compose.yml` para subir um container com postgres. Para isso instalar  docker.
 
-* Configuration
+<!--- 
+## Documentação da API 
 
-* Database creation
+- Add Link
+- Add File
+- Variables environments
 
-* Database initialization
+-->
 
-* How to run the test suite
+## Setup
 
-* Services (job queues, cache servers, search engines, etc.)
+1. `git clone https://github.com/desenvolvendome-14/contas.git`
+2. `cd contas`
+3. `cp .env.sample .env` (caso haja necessidade mude as variáveis)
+4. `docker-compose up -d` **(Só para quem usará o postgres no docker)**
+5. `rake db:create db:migrate db:seed`
+6. `rspec spec/` (para verificar se todos os testes estão ok)
+6. `rails s`
+7. Abrir o link [localhost:3000](localhost:3000)
 
-* Deployment instructions
+## Desenvolvimento
 
-* ...
+- Seguir padrões de código, utilizamos o rubocop.
+- Verificar se a funcionalidade que desenvolveu está testada, para isso a gem simplecov.
+- Verificar qualidade de código com rubycritic e rubocop.
+- Temos uma action no GitHub para verificar se todos teste estão passando e se tem alguma alteração para a qualidade de código com rubocop
