@@ -2,7 +2,6 @@
 
 FactoryBot.define do
   factory :bill do
-    bill_type { 1 }
     company_id { 1 }
     invoice { "MyString" }
     type_invoice { 1 }
@@ -11,11 +10,13 @@ FactoryBot.define do
     increase { 1.5 }
 
     trait :invoice_receivable do
+      bill_type { "invoice_receivable" }
       salesman_id { 1 }
       commission { 1.5 }
     end
 
     trait :invoice_payable do
+      bill_type { "invoice_payable" }
       scanning_date { Date.today }
       description { "MyString" }
       account_plan_id { 1 }
@@ -25,6 +26,7 @@ FactoryBot.define do
     end
 
     trait :expense_payable do
+      bill_type { "expense_payable" }
       scanning_date { Date.today }
       description { "MyString" }
       account_plan_id { 1 }
