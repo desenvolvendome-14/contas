@@ -1,0 +1,2 @@
+class Rateio < ApplicationRecord
+end
