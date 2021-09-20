@@ -1,4 +1,4 @@
 class Rateio < ApplicationRecord
-  validates :code, :account_plan, :cost_center, :story, :value, presence: true
+  validates :code, :account_plan, :cost_center, :value, presence: true
 
 end
