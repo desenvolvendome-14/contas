@@ -35,7 +35,13 @@ class Api::V1::BillsController < ApplicationController
   end
 
   def destroy
-    @bill.destroy
+    if @bill.destroy
+      render json: {
+        message: 'Excluido'
+      }, status: :ok
+    else
+      render json: @bill.errors, status: :unprocessable_entity
+    end
   end
 
   private
