@@ -5,9 +5,11 @@ class Api::V1::BillsController < ApplicationController
     if params[:bill_type].present?
       @bills = Bill.where(bill_type: params[:bill_type])
     else
+      @bills = Bill.all
       render json: {
-        message: "Precisa enviar o campo bill_type, este campo pode ter os valores invoice_receivable, invoice_payable, expense_payable"
-      }, status: :unprocessable_entity
+        bills: @bills,
+        message: "Pode filtar por tipo de conta enviando o parametro `bill_type`, como invoice_receivable ou invoice_payable ou expense_payable"
+      }, status: :ok
     end
   end
 
