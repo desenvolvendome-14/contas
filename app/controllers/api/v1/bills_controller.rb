@@ -18,7 +18,7 @@ class Api::V1::BillsController < ApplicationController
     @bill = Bill.new(bill_payable_params)
 
     if @bill.save
-      render :show, status: :created, location: @bill
+      render json: @bill, status: :created
     else
       render json: @bill.errors, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class Api::V1::BillsController < ApplicationController
     @bill = Bill.new(bill_receivable_params)
 
     if @bill.save
-      render :show, status: :created, location: @bill
+      render json: @bill, status: :created
     else
       render json: @bill.errors, status: :unprocessable_entity
     end
