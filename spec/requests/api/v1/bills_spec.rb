@@ -1,6 +1,8 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe 'API::v1::Bills', type: :request do
+require "rails_helper"
+
+RSpec.describe "API::v1::Bills", type: :request do
   let(:invoice_receivable_valid_attributes) { build(:invoice_receivable).attributes }
   let(:invoice_payable_valid_attributes) { build(:invoice_payable).attributes }
   let(:expense_payable_valid_attributes) { build(:expense_payable).attributes }
@@ -27,10 +29,10 @@ RSpec.describe 'API::v1::Bills', type: :request do
       get api_v1_bill_url(Bill.first), as: :json
       expect(response).to be_successful
       expect(body_json.id).to eq(Bill.first.id)
-      expect(body_json.to_h.keys).to eq([:id, :bill_type, :company_id, :invoice, :type_invoice, :issuance_date,
-                                         :invoice_value, :increase, :scanning_date, :description, :account_plan_id,
-                                         :cost_center_id, :discount, :net_value, :salesman_id, :commission,
-                                         :created_at, :updated_at, :url])
+      expect(body_json.to_h.keys).to eq(%i[id bill_type company_id invoice type_invoice issuance_date
+                                           invoice_value increase scanning_date description account_plan_id
+                                           cost_center_id discount net_value salesman_id commission
+                                           created_at updated_at url])
     end
   end
 
@@ -101,9 +103,9 @@ RSpec.describe 'API::v1::Bills', type: :request do
   describe "DELETE /destroy" do
     it "destroys the requested api/v1_bill" do
       bill = create(:expense_payable)
-      expect {
+      expect do
         delete api_v1_bill_url(bill), as: :json
-      }.to change(Bill, :count).by(-1)
+      end.to change(Bill, :count).by(-1)
     end
   end
 end
