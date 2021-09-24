@@ -12,7 +12,8 @@ module Api
           @bills = Bill.all
           render json: {
             bills: @bills,
-            message: "Pode filtar por tipo de conta enviando o parametro `bill_type`, como invoice_receivable ou invoice_payable ou expense_payable"
+            message: "Pode filtar por tipo de conta enviando o parametro `bill_type`,
+                      como invoice_receivable ou invoice_payable ou expense_payable"
           }, status: :ok
         end
       end
