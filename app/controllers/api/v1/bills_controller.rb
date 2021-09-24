@@ -52,7 +52,7 @@ class Api::V1::BillsController < ApplicationController
     @bill = Bill.find(params[:id])
   end
 
-  def bill_receivable_params
+  def bill_params
     params.require(:bill).permit(
       :bill_type,
       :company_id,
@@ -60,27 +60,25 @@ class Api::V1::BillsController < ApplicationController
       :type_invoice,
       :issuance_date,
       :invoice_value,
-      :increase,
+      :increase
+    )
+  end
+
+  def bill_receivable_params
+    params.require(:bill).permit(
       :salesman_id,
       :commission
-    )
+    ).merge(bill_params)
   end
 
   def bill_payable_params
     params.require(:bill).permit(
-      :bill_type,
-      :company_id,
-      :invoice,
-      :type_invoice,
-      :issuance_date,
-      :invoice_value,
-      :increase,
       :scanning_date,
       :description,
       :account_plan_id,
       :cost_center_id,
       :discount,
       :net_value
-    )
+    ).merge(bill_params)
   end
 end
