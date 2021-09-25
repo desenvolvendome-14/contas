@@ -15,6 +15,27 @@ ActiveRecord::Schema.define(version: 2021_09_17_085014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "bills", force: :cascade do |t|
+    t.integer "bill_type"
+    t.integer "company_id"
+    t.integer "participant_id"
+    t.integer "type_invoice"
+    t.string "invoice"
+    t.float "commission"
+    t.date "issuance_date"
+    t.date "scanning_date"
+    t.string "description"
+    t.integer "account_plan_id"
+    t.integer "cost_center_id"
+    t.float "invoice_value"
+    t.float "increase"
+    t.float "discount"
+    t.float "net_value"
+    t.integer "salesman_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reason_bearishes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
