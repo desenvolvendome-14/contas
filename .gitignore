@@ -31,3 +31,6 @@
 
 # Ignore folder Editor
 .idea/
+
+# Coverage
+coverage/

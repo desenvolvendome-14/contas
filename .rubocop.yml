@@ -42,7 +42,8 @@ Metrics/ParameterLists:
   Enabled: false
 
 Metrics/BlockLength:
-  IgnoredMethods: ['describe', 'context', 'it']
+  Max: 35
+  IgnoredMethods: ['describe', 'context', 'it', 'factory']
 
 Metrics/AbcSize:
   Max: 40

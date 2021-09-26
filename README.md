@@ -10,14 +10,11 @@ Serviços responsavel pelas contas(despesas e faturas) do sistema
 
 Caso não tenha postgres instalado, tem o arquivo `docker-compose.yml` para subir um container com postgres. Para isso instalar  docker.
 
-<!--- 
 ## Documentação da API 
 
-- Add Link
-- Add File
-- Variables environments
-
--->
+- link: [squad-contas.postman.co](squad-contas.postman.co)
+- Arquivo: [doc/preco_certo.postman_collection.json](https://raw.githubusercontent.com/desenvolvendome-14/contas/tree/doc/Contas.postman_collection.json)
+<!-- - Variables environments -->
 
 ## Setup
 
