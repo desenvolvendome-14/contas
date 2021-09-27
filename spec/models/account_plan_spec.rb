@@ -14,5 +14,8 @@ require "rails_helper"
 RSpec.describe AccountPlan, type: :model do
   describe "::Associations" do
     it { should have_many(:bills) }
+
+  describe "validations Accont_Plan" do
+    it { is_expected.to validate_presence_of :description }
   end
 end
