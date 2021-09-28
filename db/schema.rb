@@ -86,6 +86,12 @@ ActiveRecord::Schema.define(version: 2021_10_01_084858) do
     t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
   end
 
+  create_table "cost_centers", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "reason_bearishes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
