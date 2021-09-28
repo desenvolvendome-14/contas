@@ -10,5 +10,4 @@
 class AccountPlan < ApplicationRecord
 end
 
-  validates :description, presence: true
 end
