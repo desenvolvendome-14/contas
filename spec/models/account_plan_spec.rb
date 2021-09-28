@@ -1,4 +1,4 @@
-require "rails_helper"
+require = require "rails_helper"
 
 RSpec.describe AccountPlan, type: :model do
 
