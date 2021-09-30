@@ -28,12 +28,12 @@ jobs:
           bundler-cache: true
 
       - name: Cache gems
-          uses: actions/cache@v1
-          with:
-            path: vendor/bundle
-            key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
-            restore-keys: |
-              ${{ runner.os }}-rubocop-
+        uses: actions/cache@v1
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-rubocop-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-rubocop-
 
       - name: Install dependencias
         run: |

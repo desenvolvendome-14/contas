@@ -41,5 +41,5 @@ jobs:
           PGPASSWORD: postgres
           RAILS_ENV: test
         run: |
-          bundle exec rails db:schema:load
+          bundle exec rails db:create db:migrate
           bundle exec rspec
