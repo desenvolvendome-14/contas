@@ -32,10 +32,7 @@ FactoryBot.define do
     account_plan { nil }
     cost_center { nil }
     story { "MyString" }
-<<<<<<< HEAD
     bill { nil }
     value { "9.99" }
-=======
->>>>>>> feat(rateio) add model and test
   end
 end
