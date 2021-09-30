@@ -4,7 +4,7 @@ FactoryBot.define do
     account_plan { nil }
     cost_center { nil }
     story { "MyString" }
-    bio_id { nil }
-    invoice { nil }
+    bill { nil }
+    value { "9.99" }
   end
 end
