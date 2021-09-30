@@ -1,12 +1,5 @@
-# frozen_string_literal: true
-
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Rateio, type: :model do
-  describe "Validations" do
-    it { is_expected.to validate_presence_of :code }
-    it { is_expected.to validate_presence_of :story }
-    it { is_expected.to validate_presence_of :value }
-  end
-
+  pending "add some examples to (or delete) #{__FILE__}"
 end
