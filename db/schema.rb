@@ -92,12 +92,29 @@ ActiveRecord::Schema.define(version: 2021_10_01_084858) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "rateios", force: :cascade do |t|
+    t.string "code"
+    t.bigint "account_plan_id", null: false
+    t.bigint "cost_center_id", null: false
+    t.string "story"
+    t.bigint "bill_id", null: false
+    t.decimal "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_plan_id"], name: "index_rateios_on_account_plan_id"
+    t.index ["bill_id"], name: "index_rateios_on_bill_id"
+    t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
+  end
+
   create_table "reason_bearishes", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "rateios", "account_plans"
+  add_foreign_key "rateios", "bills"
+  add_foreign_key "rateios", "cost_centers"
   add_foreign_key "rateios", "account_plans"
   add_foreign_key "rateios", "bills"
   add_foreign_key "rateios", "cost_centers"
