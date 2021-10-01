@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTypeCharges < ActiveRecord::Migration[6.1]
   def change
     create_table :type_charges do |t|
