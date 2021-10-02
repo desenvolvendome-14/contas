@@ -8,5 +8,4 @@ RSpec.describe Rateio, type: :model do
     it { is_expected.to validate_presence_of :story }
     it { is_expected.to validate_presence_of :value }
   end
-
 end
