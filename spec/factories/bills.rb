@@ -1,5 +1,29 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: bills
+#
+#  id              :bigint           not null, primary key
+#  bill_type       :integer
+#  commission      :float
+#  description     :string
+#  discount        :float
+#  increase        :float
+#  invoice         :string
+#  invoice_value   :float
+#  issuance_date   :date
+#  net_value       :float
+#  scanning_date   :date
+#  type_invoice    :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  account_plan_id :integer
+#  company_id      :integer
+#  cost_center_id  :integer
+#  participant_id  :integer
+#  salesman_id     :integer
+#
 FactoryBot.define do
   factory :bill do
     company { create(:company) }

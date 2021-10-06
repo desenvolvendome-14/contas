@@ -27,6 +27,24 @@ ActiveRecord::Schema.define(version: 2021_09_28_081212) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "account_plans", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "account_banks", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "account_plans", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "bills", force: :cascade do |t|
     t.integer "bill_type"
     t.integer "company_id"
@@ -85,6 +103,34 @@ ActiveRecord::Schema.define(version: 2021_09_28_081212) do
 
   create_table "cost_centers", force: :cascade do |t|
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invoice_receivables", force: :cascade do |t|
+    t.date "payment_date"
+    t.date "accounting_date"
+    t.decimal "amount_paid"
+    t.decimal "discount_amount"
+    t.decimal "interest_amount"
+    t.decimal "addition_amount"
+    t.decimal "total_amount"
+    t.string "notary_expenses"
+    t.string "protest_expenses"
+    t.decimal "amount_paid_chart_of_accounts"
+    t.decimal "discount_chart_of_accounts"
+    t.string "interest_chart_of_account"
+    t.string "addition_chart_of_accounts"
+    t.string "plan_of_accounts_expenses_notary_public"
+    t.string "plan_of_accounts_expenditures_protest"
+    t.string "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.string "name"
+    t.integer "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
