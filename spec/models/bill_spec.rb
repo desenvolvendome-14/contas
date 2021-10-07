@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe Bill, type: :model do
-  describe 'General' do
+  describe "General" do
     context "::Validations" do
       it { is_expected.to validate_presence_of :bill_type }
       it { is_expected.to validate_presence_of :invoice }
@@ -29,7 +29,7 @@ RSpec.describe Bill, type: :model do
     end
 
     context "::Associations" do
-      it { expect(@invoice_receivable).to belong_to(:salesman).class_name('Participant').optional }
+      it { expect(@invoice_receivable).to belong_to(:salesman).class_name("Participant").optional }
     end
   end
 

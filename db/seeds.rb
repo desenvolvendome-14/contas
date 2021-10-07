@@ -8,15 +8,15 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Company.create!([{ name: 'Google' }, { name: 'Amazon' }])
+Company.create!([{ name: "Google" }, { name: "Amazon" }])
 
-Participant.create(name: 'Fulano', person_type: :salesman)
-Participant.create(name: 'Beltrano', person_type: :client)
-Participant.create(name: 'Deltrano', person_type: :company)
+Participant.create(name: "Fulano", person_type: :salesman)
+Participant.create(name: "Beltrano", person_type: :client)
+Participant.create(name: "Deltrano", person_type: :company)
 
-AccountPlan.create([{ description: 'account 1' }, {description: 'account 2'}])
+AccountPlan.create([{ description: "account 1" }, { description: "account 2" }])
 
-CostCenter.create([{description: 'Cost CEnter 1'}, {description: 'Cost CEnter 1'}])
+CostCenter.create([{ description: "Cost CEnter 1" }, { description: "Cost CEnter 1" }])
 
 AccountBank.create(description: "Conta Banco do Brasil")
 AccountBank.create(description: "Conta Caixa Federal")
