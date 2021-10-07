@@ -73,7 +73,7 @@ module Api
           :issuance_date,
           :invoice_value,
           :increase,
-          :net_value,
+          :net_value
         )
       end
 
@@ -90,7 +90,7 @@ module Api
           :description,
           :account_plan_id,
           :cost_center_id,
-          :discount,
+          :discount
         ).merge(bill_params)
       end
     end
