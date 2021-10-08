@@ -15,9 +15,29 @@ RSpec.describe "API::v1::Bills", type: :request do
       create_list(:invoice_payable, 3)
       create_list(:expense_payable, 4)
     end
-    it "invoice_receivable" do
+
+    it "get All" do
       get api_v1_bills_url, as: :json
       expect(response).to be_successful
+      expect(body_json.bills.count).to eq(9)
+    end
+
+    it "invoice_receivable" do
+      get '/api/v1/bills?bill_type=invoice_receivable', as: :json
+      expect(response).to be_successful
+      expect(body_json.count).to eq(2)
+    end
+
+    it "invoice_payable" do
+      get '/api/v1/bills?bill_type=invoice_payable', as: :json
+      expect(response).to be_successful
+      expect(body_json.count).to eq(3)
+    end
+
+    it "expense_payable" do
+      get '/api/v1/bills?bill_type=expense_payable', as: :json
+      expect(response).to be_successful
+      expect(body_json.count).to eq(4)
     end
   end
 
