@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3c007abc-20f9-4eb6-9c94-aaf289bcb240",
+		"_postman_id": "52e276d2-5333-41eb-9e76-4a030214a438",
 		"name": "Contas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -87,6 +87,37 @@
 								"v1",
 								"bills",
 								"create_payable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_value\": 200.90,\n    \"description\": \"Feito update Despesa a pagar\",\n    \"bill_type\": \"expense_payable\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/bills/update_payable/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bills",
+								"update_payable",
+								"2"
 							]
 						}
 					},
@@ -203,6 +234,37 @@
 					"response": []
 				},
 				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_value\": 202.90,\n    \"description\": \"Feito update Fatura a pagar\",\n    \"bill_type\": \"invoice_payable\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/bills/update_payable/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bills",
+								"update_payable",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "destroy",
 					"request": {
 						"method": "DELETE",
@@ -307,6 +369,37 @@
 								"v1",
 								"bills",
 								"create_receivable"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"invoice_value\": 200.90,\n    \"description\": \"Feito update Fatura a receber\",\n    \"bill_type\": \"invoice_receivable\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/v1/bills/update_receivable/4",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"bills",
+								"update_receivable",
+								"4"
 							]
 						}
 					},
