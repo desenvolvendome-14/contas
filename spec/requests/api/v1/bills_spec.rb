@@ -129,6 +129,37 @@ RSpec.describe "API::v1::Bills", type: :request do
     end
   end
 
+  describe "PUT /update_payable/:id" do
+    let(:invoice) { create(:invoice_payable) }
+
+    let(:new_params) do
+      {
+        "invoice_value": 340.0,
+        "increase": "10.00"
+      }
+    end
+
+    context "attributes valid" do
+      it "check if attributes was updated" do
+        put update_payable_api_v1_bills_url(invoice),
+            params: { bill: new_params }, as: :json
+
+        expect(body_json.invoice_value).to eq(340.0)
+        expect(body_json.increase).to eq(10)
+      end
+    end
+
+    context "attributes invalid" do
+      it "not update when invalid attributes" do
+        put update_payable_api_v1_bills_url(invoice),
+            params: { bill: invalid_attributes }, as: :json
+
+        expect(body_json.bill_type).to include("can't be blank")
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
   describe "DELETE /destroy" do
     it "destroys the requested api/v1_bill" do
       bill = create(:expense_payable)
