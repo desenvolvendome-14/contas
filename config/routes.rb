@@ -4,6 +4,10 @@ Rails.application.routes.draw do
       resources :bills, only: [:index, :show, :destroy] do
         post :create_receivable, on: :collection
         post :create_payable, on: :collection
+        put 'update_receivable/:id',
+            to: 'bills#update_receivable',
+            on: :collection,
+            as: :update_receivable
       end
     end
   end

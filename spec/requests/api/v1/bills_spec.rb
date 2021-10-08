@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "rails_helper"
 
 RSpec.describe "API::v1::Bills", type: :request do
@@ -95,6 +93,37 @@ RSpec.describe "API::v1::Bills", type: :request do
                params: { bill: invalid_attributes }, as: :json
         end.to change(Bill.where(bill_type: :expense_payable), :count).by(0)
 
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe "PUT /update_receivable/:id" do
+    let(:invoice) { create(:invoice_receivable) }
+
+    let(:new_params) do
+      {
+        "invoice_value": 340.0,
+        "increase": "10.00"
+      }
+    end
+
+    context "attributes valid" do
+      it "check if attributes was updated" do
+        put update_receivable_api_v1_bills_url(invoice),
+            params: { bill: new_params }, as: :json
+
+        expect(body_json.invoice_value).to eq(340.0)
+        expect(body_json.increase).to eq(10)
+      end
+    end
+
+    context "attributes invalid" do
+      it "not update when invalid attributes" do
+        put update_receivable_api_v1_bills_url(invoice),
+            params: { bill: invalid_attributes }, as: :json
+
+        expect(body_json.bill_type).to include("can't be blank")
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

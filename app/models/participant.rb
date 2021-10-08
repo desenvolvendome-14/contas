@@ -1,4 +1,5 @@
 class Participant < ApplicationRecord
-  enum type: [:company, :salesman, :client]
-  validates :name, :type, presence: true
+  has_many :bills
+  enum person_type: [:company, :salesman, :client]
+  validates :name, :person_type, presence: true
 end
