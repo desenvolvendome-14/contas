@@ -23,19 +23,19 @@ RSpec.describe "API::v1::Bills", type: :request do
     end
 
     it "invoice_receivable" do
-      get '/api/v1/bills?bill_type=invoice_receivable', as: :json
+      get "/api/v1/bills?bill_type=invoice_receivable", as: :json
       expect(response).to be_successful
       expect(body_json.count).to eq(2)
     end
 
     it "invoice_payable" do
-      get '/api/v1/bills?bill_type=invoice_payable', as: :json
+      get "/api/v1/bills?bill_type=invoice_payable", as: :json
       expect(response).to be_successful
       expect(body_json.count).to eq(3)
     end
 
     it "expense_payable" do
-      get '/api/v1/bills?bill_type=expense_payable', as: :json
+      get "/api/v1/bills?bill_type=expense_payable", as: :json
       expect(response).to be_successful
       expect(body_json.count).to eq(4)
     end
