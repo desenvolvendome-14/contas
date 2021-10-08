@@ -8,6 +8,10 @@ Rails.application.routes.draw do
             to: 'bills#update_receivable',
             on: :collection,
             as: :update_receivable
+        put 'update_payable/:id',
+            to: 'bills#update_payable',
+            on: :collection,
+            as: :update_payable
       end
     end
   end
