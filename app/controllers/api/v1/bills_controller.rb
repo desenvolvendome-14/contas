@@ -3,7 +3,7 @@
 module Api
   module V1
     class BillsController < ApplicationController
-      before_action :set_bill, only: %i[show update_receivable destroy]
+      before_action :set_bill, only: %i[show update_receivable update_payable destroy]
 
       def index
         if params[:bill_type].present?
@@ -42,6 +42,14 @@ module Api
 
       def update_receivable
         if @bill.update(bill_receivable_params)
+          render @bill, status: :ok
+        else
+          render json: @bill.errors, status: :unprocessable_entity
+        end
+      end
+
+      def update_payable
+        if @bill.update(bill_payable_params)
           render @bill, status: :ok
         else
           render json: @bill.errors, status: :unprocessable_entity
