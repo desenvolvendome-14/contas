@@ -12,7 +12,7 @@ Caso não tenha postgres instalado, tem o arquivo `docker-compose.yml` para subi
 
 ## Documentação da API 
 
-- link: [squad-contas.postman.co](squad-contas.postman.co)
+- link: [https://www.postman.com/squad-contas/workspace/contas/overview](https://www.postman.com/squad-contas/workspace/contas/overview)
 - Arquivo: [doc/preco_certo.postman_collection.json](https://raw.githubusercontent.com/desenvolvendome-14/contas/tree/doc/Contas.postman_collection.json)
 <!-- - Variables environments -->
 
