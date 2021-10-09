@@ -35,6 +35,9 @@ Style/StringLiteralsInInterpolation:
   Enabled: true
   EnforcedStyle: double_quotes
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
 MethodLength:
   Max: 35
 

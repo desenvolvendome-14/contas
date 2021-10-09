@@ -3,7 +3,7 @@
 module Api
   module V1
     class BillsController < ApplicationController
-      before_action :set_bill, only: %i[show update destroy]
+      before_action :set_bill, only: %i[show update_receivable update_payable destroy]
 
       def index
         if params[:bill_type].present?
@@ -40,6 +40,22 @@ module Api
         end
       end
 
+      def update_receivable
+        if @bill.update(bill_receivable_params)
+          render @bill, status: :ok
+        else
+          render json: @bill.errors, status: :unprocessable_entity
+        end
+      end
+
+      def update_payable
+        if @bill.update(bill_payable_params)
+          render @bill, status: :ok
+        else
+          render json: @bill.errors, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         if @bill.destroy
           render json: {
@@ -64,7 +80,8 @@ module Api
           :type_invoice,
           :issuance_date,
           :invoice_value,
-          :increase
+          :increase,
+          :net_value
         )
       end
 
@@ -81,8 +98,7 @@ module Api
           :description,
           :account_plan_id,
           :cost_center_id,
-          :discount,
-          :net_value
+          :discount
         ).merge(bill_params)
       end
     end
