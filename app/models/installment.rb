@@ -4,12 +4,12 @@ class Installment < ApplicationRecord
   belongs_to :type_charge
 
 
-	validates :bill, :account_bank, :type_charge, presence: true
+	validates :bill, :account_bank, :type_charge, :due_date, presence: true
   validate :verify_date
 	validate :positive_value
 	
 	def verify_date
-		if Date.today > due_date
+		if due_date.nil? || Date.today > due_date
 			errors.add(:due_date, :verify_date, message: "data vencimento não pode ser maior que data atual")
 		end
 	end
