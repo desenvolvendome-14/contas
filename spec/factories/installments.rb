@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :installment do
     name { "MyString" }
-    due_date { "2021-10-05" }
+    due_date { Date.tomorrow }
     value { 1.5 }
     note { "MyString" }
     bill { create(:invoice_receivable)}
