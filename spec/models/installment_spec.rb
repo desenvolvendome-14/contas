@@ -10,7 +10,7 @@ RSpec.describe Installment, type: :model do
   describe 'validate' do
     context "presence true" do
       #   todo
-     # it { expect(create(:installment)).to validate_presence_of(:description) }
+      it { expect(create(:installment)).to validate_presence_of(:due_date) }
     end
     
     context "positive value " do
