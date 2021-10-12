@@ -38,6 +38,6 @@ Bill.create!(bill_type: :expense_payable, company: Company.second, invoice: "des
              cost_center_id: 2, discount: 5.00, net_value: 195.99)
 
 DocumentType.create([
-                      { description: 'Pix' }, { description: 'Dinheiro' },
-                      { description: 'Cartão de Crédito' }, { description: 'Cheque' }
+                      { description: "Pix" }, { description: "Dinheiro" },
+                      { description: "Cartão de Crédito" }, { description: "Cheque" }
                     ])
