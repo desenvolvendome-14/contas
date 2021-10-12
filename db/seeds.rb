@@ -21,8 +21,7 @@ CostCenter.create([{ description: "Cost CEnter 1" }, { description: "Cost CEnter
 AccountBank.create(description: "Conta Banco do Brasil")
 AccountBank.create(description: "Conta Caixa Federal")
 
-TypeCharge.create(description: "Dinheiro")
-TypeCharge.create(description: "Pix")
+TypeCharge.create([{ description: "Carteira Simples" }, { description: "Carteira Registrada" }])
 
 Bill.create!(bill_type: :invoice_receivable, company: Company.first, invoice: "fatura a receber",
              type_invoice: :bill_safe, issuance_date: Date.today, invoice_value: 150.99,
@@ -37,3 +36,8 @@ Bill.create!(bill_type: :expense_payable, company: Company.second, invoice: "des
              type_invoice: :bill_safe, issuance_date: Date.today, invoice_value: 190.99,
              increase: 10.00, scanning_date: Date.today, description: "Nada", account_plan_id: 1,
              cost_center_id: 2, discount: 5.00, net_value: 195.99)
+
+DocumentType.create([
+                      { description: 'Pix' }, { description: 'Dinheiro' },
+                      { description: 'Cartão de Crédito' }, { description: 'Cheque' }
+                    ])
