@@ -1,13 +1,4 @@
-# == Route Map
-#
-
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      resources :rateios, only: [:index, :show, :destroy ] do
-      end
-    end
-  end
   namespace :api do
     namespace :v1 do
       resources :bills, only: [:index, :show, :destroy] do
@@ -24,6 +15,8 @@ Rails.application.routes.draw do
       end
 
       resources :installments
+      resources :document_types
+      resources :rateios, only: [:index ]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
