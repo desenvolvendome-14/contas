@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "rateios", type: :request do
   #
@@ -7,7 +7,7 @@ RSpec.describe "rateios", type: :request do
 
   describe "GET /index" do
     before :each do
-      create_list(:rateio,3)
+      create_list(:rateio, 3)
     end
     it "renders a successful response" do
       get api_v1_rateios_url, as: :json
