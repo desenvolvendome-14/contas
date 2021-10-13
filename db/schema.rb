@@ -214,8 +214,9 @@ ActiveRecord::Schema.define(version: 2021_09_28_081212) do
   add_foreign_key "bills", "companies"
   add_foreign_key "bills", "cost_centers"
   add_foreign_key "bills", "participants"
-  add_foreign_key "bills", "participants", column: "salesman_id"
+  # add_foreign_key "bills", "participants", column: "salesman_id"
   add_foreign_key "rateios", "account_plans"
   add_foreign_key "rateios", "bills"
   add_foreign_key "rateios", "cost_centers"
+    end
 end

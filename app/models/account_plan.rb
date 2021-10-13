@@ -8,6 +8,5 @@
 #  updated_at  :datetime         not null
 #
 class AccountPlan < ApplicationRecord
-end
-
+  has_many :bills
 end

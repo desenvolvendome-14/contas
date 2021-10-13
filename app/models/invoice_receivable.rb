@@ -1,2 +1,0 @@
-class InvoiceReceivable < ApplicationRecord
-end

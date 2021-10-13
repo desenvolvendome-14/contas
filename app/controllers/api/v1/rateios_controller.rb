@@ -5,10 +5,8 @@ module Api
     class RateiosController < ApplicationController
       before_action :set_rateio, only: %i[show update destroy]
 
-      # GET /api/v1/rateios
-      # GET /api/v1/rateios.json
       def index
-        @api_v1_rateios = Rateio.all
+        @rateios = Rateio.all
       end
 
       # GET /api/v1/rateios/1
