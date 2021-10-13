@@ -1,0 +1,2 @@
+class InvoiceReceivable < ApplicationRecord
+end
