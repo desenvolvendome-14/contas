@@ -7,11 +7,10 @@ RSpec.describe "rateios", type: :request do
 
   describe "GET /index" do
     before :each do
-      #create_list(:)
+      create_list(:rateio,3)
     end
     it "renders a successful response" do
-      Rateio.create! valid_attributes
-      get rateios_url, headers: valid_headers, as: :json
+      get api_v1_rateios_url, as: :json
       expect(response).to be_successful
     end
   end

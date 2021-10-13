@@ -33,6 +33,4 @@ class Rateio < ApplicationRecord
   validates :account_plan_id, :cost_center_id, :bill, presence: true
   validates :value, presence: true
 
-  belongs_to :bio_id
-  belongs_to :invoice
 end

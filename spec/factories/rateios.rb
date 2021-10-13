@@ -29,10 +29,10 @@
 FactoryBot.define do
   factory :rateio do
     code { "MyString" }
-    account_plan { nil }
-    cost_center { nil }
+    account_plan { create(:account_plan) }
+    cost_center { create(:cost_center) }
     story { "MyString" }
-    bill { nil }
+    bill { create(:invoice_payable) }
     value { "9.99" }
   end
 end
