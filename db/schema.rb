@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_03_212120) do
+ActiveRecord::Schema.define(version: 2021_10_07_083509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,27 @@ ActiveRecord::Schema.define(version: 2021_11_03_212120) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "invoice_receivables", force: :cascade do |t|
+    t.date "payment_date"
+    t.date "accounting_date"
+    t.decimal "amount_paid"
+    t.decimal "discount_amount"
+    t.decimal "interest_amount"
+    t.decimal "addition_amount"
+    t.decimal "total_amount"
+    t.string "notary_expenses"
+    t.string "protest_expenses"
+    t.decimal "amount_paid_chart_of_accounts"
+    t.decimal "discount_chart_of_accounts"
+    t.string "interest_chart_of_account"
+    t.string "addition_chart_of_accounts"
+    t.string "plan_of_accounts_expenses_notary_public"
+    t.string "plan_of_accounts_expenditures_protest"
+    t.string "history"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "participants", force: :cascade do |t|
     t.string "name"
     t.integer "person_type"
@@ -72,10 +93,17 @@ ActiveRecord::Schema.define(version: 2021_11_03_212120) do
   end
 
   create_table "rateios", force: :cascade do |t|
-    t.decimal "value_rateio"
-    t.text "obs"
+    t.string "code"
+    t.bigint "account_plan_id", null: false
+    t.bigint "cost_center_id", null: false
+    t.string "story"
+    t.bigint "bill_id", null: false
+    t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_plan_id"], name: "index_rateios_on_account_plan_id"
+    t.index ["bill_id"], name: "index_rateios_on_bill_id"
+    t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
   end
 
   create_table "reason_bearishes", force: :cascade do |t|
@@ -95,4 +123,7 @@ ActiveRecord::Schema.define(version: 2021_11_03_212120) do
   add_foreign_key "bills", "cost_centers"
   add_foreign_key "bills", "participants"
   add_foreign_key "bills", "participants", column: "salesman_id"
+  add_foreign_key "rateios", "account_plans"
+  add_foreign_key "rateios", "bills"
+  add_foreign_key "rateios", "cost_centers"
 end
