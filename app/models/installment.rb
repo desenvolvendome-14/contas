@@ -15,7 +15,7 @@ class Installment < ApplicationRecord
 	end
 
 	def positive_value
-		if value <= 0
+		if value.nil? || value <= 0
 			errors.add(:value, :positive_value, message: "Valor não pode ser menor ou igual a zero") 
 		end
 	end
