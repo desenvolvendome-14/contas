@@ -13,6 +13,10 @@ Rails.application.routes.draw do
             on: :collection,
             as: :update_payable
       end
+
+      resources :installments
+      resources :document_types
+      resources :rateios, only: [:index ]
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
