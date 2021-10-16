@@ -126,4 +126,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_083509) do
   add_foreign_key "rateios", "account_plans"
   add_foreign_key "rateios", "bills"
   add_foreign_key "rateios", "cost_centers"
+  add_foreign_key "installments", "account_banks"
+  add_foreign_key "installments", "bills"
+  add_foreign_key "installments", "type_charges"
 end
