@@ -8,4 +8,12 @@ class Payment < ApplicationRecord
   belongs_to :charts_accounts_discount_amount, class_name: 'ChartsAccount'
   belongs_to :charts_accounts_interest_amount, class_name: 'ChartsAccount'
   belongs_to :charts_accounts_increase_amount, class_name: 'ChartsAccount'
+
+  before_save :calculate_total_amount
+
+  private
+
+  def calculate_total_amount
+    self.total_amount = amount_paid - discount_amount + interest_amount + increase_amount
+  end
 end
