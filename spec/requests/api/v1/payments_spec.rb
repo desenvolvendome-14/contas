@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/api/v1/payments", type: :request do
   let(:valid_attributes) { build(:payment).attributes }
@@ -14,11 +14,10 @@ RSpec.describe "/api/v1/payments", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Payment" do
-        expect {
+        expect do
           post api_v1_payments_url,
                params: { payment: valid_attributes }, as: :json
-          response_body = response.body
-        }.to change(Payment, :count).by(1)
+        end.to change(Payment, :count).by(1)
       end
 
       it "renders a JSON response with the new api/v1_payment" do
@@ -30,10 +29,10 @@ RSpec.describe "/api/v1/payments", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new Payment" do
-        expect {
+        expect do
           post api_v1_payments_url,
                params: { payment: invalid_attributes }, as: :json
-        }.to change(Payment, :count).by(0)
+        end.to change(Payment, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new payment" do
