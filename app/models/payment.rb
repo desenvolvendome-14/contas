@@ -9,6 +9,8 @@ class Payment < ApplicationRecord
   belongs_to :charts_accounts_interest_amount, class_name: 'ChartsAccount'
   belongs_to :charts_accounts_increase_amount, class_name: 'ChartsAccount'
 
+  validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
+
   before_save :calculate_total_amount
 
   private
