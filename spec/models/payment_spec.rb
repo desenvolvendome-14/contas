@@ -18,6 +18,10 @@ RSpec.describe Payment, type: :model do
       it "Amount Paid" do
         should validate_numericality_of(:amount_paid).is_greater_than_or_equal_to(0)
       end
+
+      it "Discount Amount" do
+        should validate_numericality_of(:discount_amount).is_greater_than_or_equal_to(0)
+      end
     end
 
   end
