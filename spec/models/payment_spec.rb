@@ -14,7 +14,7 @@ RSpec.describe Payment, type: :model do
   end
 
   describe "Validations" do
-    context " greater than or equal to zero" do
+    context "greater than or equal to zero" do
       it "Amount Paid" do
         should validate_numericality_of(:amount_paid).is_greater_than_or_equal_to(0)
       end
@@ -32,6 +32,14 @@ RSpec.describe Payment, type: :model do
       end
     end
 
+    context "Validates date less than today" do
+      let!(:payment) { build(:payment, pay_date: Date.today + 1.day) }
+
+      it "Pay Date" do
+        expect(payment.save).to be_falsey
+        expect(payment.errors[:pay_date]).to include("Data de Pagamento não pode ser maior que data atual")
+      end
+    end
   end
 
   describe "total_amount calculate before save" do
