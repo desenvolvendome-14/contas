@@ -33,11 +33,20 @@ RSpec.describe Payment, type: :model do
     end
 
     context "Validates date less than today" do
-      let!(:payment) { build(:payment, pay_date: Date.today + 1.day) }
+      let!(:payment) do
+        build(:payment,
+              pay_date: Date.today + 1.day,
+              accounting_date: Date.today + 1.day)
+      end
 
       it "Pay Date" do
         expect(payment.save).to be_falsey
         expect(payment.errors[:pay_date]).to include("Data de Pagamento não pode ser maior que data atual")
+      end
+
+      it "Accounting Date" do
+        expect(payment.save).to be_falsey
+        expect(payment.errors[:accounting_date]).to include("Data Contábil não pode ser maior que data atual")
       end
     end
   end
