@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_092013) do
+ActiveRecord::Schema.define(version: 2021_10_12_090341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_banks", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "account_plans", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -37,19 +43,13 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "salesman_id"
     t.bigint "company_id", null: false
-    t.bigint "charts_account_id"
+    t.bigint "account_plan_id"
     t.bigint "cost_center_id"
     t.bigint "participant_id"
-    t.index ["charts_account_id"], name: "index_bills_on_charts_account_id"
+    t.index ["account_plan_id"], name: "index_bills_on_account_plan_id"
     t.index ["company_id"], name: "index_bills_on_company_id"
     t.index ["cost_center_id"], name: "index_bills_on_cost_center_id"
     t.index ["participant_id"], name: "index_bills_on_participant_id"
-  end
-
-  create_table "charts_accounts", force: :cascade do |t|
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "companies", force: :cascade do |t|
@@ -62,27 +62,6 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "document_types", force: :cascade do |t|
-    t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "installments", force: :cascade do |t|
-    t.string "name"
-    t.date "due_date"
-    t.float "value"
-    t.string "note"
-    t.bigint "bill_id", null: false
-    t.bigint "account_bank_id", null: false
-    t.bigint "type_charge_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["account_bank_id"], name: "index_installments_on_account_bank_id"
-    t.index ["bill_id"], name: "index_installments_on_bill_id"
-    t.index ["type_charge_id"], name: "index_installments_on_type_charge_id"
   end
 
   create_table "invoice_receivables", force: :cascade do |t|
@@ -106,6 +85,12 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "document_types", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "participants", force: :cascade do |t|
     t.string "name"
     t.integer "person_type"
@@ -115,15 +100,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
 
   create_table "rateios", force: :cascade do |t|
     t.string "code"
-    t.bigint "charts_account_id", null: false
+    t.bigint "account_plan_id", null: false
     t.bigint "cost_center_id", null: false
     t.string "story"
     t.bigint "bill_id", null: false
     t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_plan_id"], name: "index_rateios_on_account_plan_id"
     t.index ["bill_id"], name: "index_rateios_on_bill_id"
-    t.index ["charts_account_id"], name: "index_rateios_on_charts_account_id"
     t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
   end
 
@@ -139,15 +124,15 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bills", "charts_accounts"
+  add_foreign_key "bills", "account_plans"
   add_foreign_key "bills", "companies"
   add_foreign_key "bills", "cost_centers"
   add_foreign_key "bills", "participants"
   add_foreign_key "bills", "participants", column: "salesman_id"
+  add_foreign_key "rateios", "account_plans"
+  add_foreign_key "rateios", "bills"
+  add_foreign_key "rateios", "cost_centers"
   add_foreign_key "installments", "account_banks"
   add_foreign_key "installments", "bills"
   add_foreign_key "installments", "type_charges"
-  add_foreign_key "rateios", "bills"
-  add_foreign_key "rateios", "charts_accounts"
-  add_foreign_key "rateios", "cost_centers"
 end

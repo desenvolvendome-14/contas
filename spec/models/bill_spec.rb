@@ -69,7 +69,7 @@ RSpec.describe Bill, type: :model do
     end
 
     context "::Associations" do
-      it { expect(@invoice_payable).to belong_to(:charts_account).optional }
+      it { expect(@invoice_payable).to belong_to(:account_plan).optional }
       it { expect(@invoice_payable).to belong_to(:cost_center).optional }
     end
   end
@@ -86,7 +86,7 @@ RSpec.describe Bill, type: :model do
     end
 
     context "::Associations" do
-      it { expect(@expense_payable).to belong_to(:charts_account).optional }
+      it { expect(@expense_payable).to belong_to(:account_plan).optional }
       it { expect(@expense_payable).to belong_to(:cost_center).optional }
     end
   end
