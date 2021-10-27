@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Payment, type: :model do
   describe "Associations" do
@@ -52,8 +52,10 @@ RSpec.describe Payment, type: :model do
   end
 
   describe "total_amount calculate before save" do
-    let!(:payment) { create(:payment, amount_paid: 100, discount_amount: 10,
-                            interest_amount: 0, increase_amount: 0) }
+    let!(:payment) do
+      create(:payment, amount_paid: 100, discount_amount: 10,
+                       interest_amount: 0, increase_amount: 0)
+    end
 
     it { expect(payment.total_amount).to eq(90) }
   end
