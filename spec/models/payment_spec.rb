@@ -13,6 +13,15 @@ RSpec.describe Payment, type: :model do
     it { should belong_to(:charts_accounts_increase_amount).class_name("ChartsAccount") }
   end
 
+  describe "Validations" do
+    context " greater than or equal to zero" do
+      it "Amount Paid" do
+        should validate_numericality_of(:amount_paid).is_greater_than_or_equal_to(0)
+      end
+    end
+
+  end
+
   describe "total_amount calculate before save" do
     let!(:payment) { create(:payment, amount_paid: 100, discount_amount: 10,
                             interest_amount: 0, increase_amount: 0) }
