@@ -48,7 +48,7 @@ RSpec.describe "API::v1::Bills", type: :request do
       expect(response).to be_successful
       expect(body_json.id).to eq(Bill.first.id)
       expect(body_json.to_h.keys).to eq(%i[id bill_type company_id invoice type_invoice issuance_date
-                                           invoice_value increase scanning_date description account_plan_id
+                                           invoice_value increase scanning_date description charts_account_id
                                            cost_center_id discount net_value salesman_id commission
                                            created_at updated_at url])
     end
