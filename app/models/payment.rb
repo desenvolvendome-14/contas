@@ -11,6 +11,7 @@ class Payment < ApplicationRecord
 
   validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
   validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }
+  validates :interest_amount, numericality: { greater_than_or_equal_to: 0 }
 
   before_save :calculate_total_amount
 
