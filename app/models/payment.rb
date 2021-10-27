@@ -16,6 +16,8 @@ class Payment < ApplicationRecord
   validate :verify_pay_date
   validate :verify_accounting_date
 
+  before_save :calculate_total_amount
+
   def verify_pay_date
     if pay_date.nil? || pay_date >= Date.today
       errors.add(:pay_date, :verify_date, message: "Data de Pagamento não pode ser maior que data atual")
@@ -27,8 +29,6 @@ class Payment < ApplicationRecord
       errors.add(:accounting_date, :verify_date, message: "Data Contábil não pode ser maior que data atual")
     end
   end
-
-  before_save :calculate_total_amount
 
   private
 
