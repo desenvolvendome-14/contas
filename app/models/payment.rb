@@ -13,6 +13,13 @@ class Payment < ApplicationRecord
   validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }
   validates :interest_amount, numericality: { greater_than_or_equal_to: 0 }
   validates :increase_amount, numericality: { greater_than_or_equal_to: 0 }
+  validate :verify_pay_date
+
+  def verify_pay_date
+    if pay_date.nil? || pay_date >= Date.today
+      errors.add(:pay_date, :verify_date, message: "Data de Pagamento não pode ser maior que data atual")
+    end
+  end
 
   before_save :calculate_total_amount
 
