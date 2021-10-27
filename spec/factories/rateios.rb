@@ -35,7 +35,7 @@ FactoryBot.define do
 FactoryBot.define do
   factory :rateio do
     code { "MyString" }
-    charts_account { create(:charts_account) }
+    account_plan { create(:account_plan) }
     cost_center { create(:cost_center) }
     story { "MyString" }
     bill { create(:invoice_payable) }

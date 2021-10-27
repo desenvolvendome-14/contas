@@ -10,12 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_05_082015) do
+ActiveRecord::Schema.define(version: 2021_10_25_092013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "account_banks", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "account_plans", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -115,6 +121,12 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "document_types", force: :cascade do |t|
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "participants", force: :cascade do |t|
     t.string "name"
     t.integer "person_type"
@@ -167,6 +179,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.decimal "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_plan_id"], name: "index_rateios_on_account_plan_id"
     t.index ["bill_id"], name: "index_rateios_on_bill_id"
     t.index ["charts_account_id"], name: "index_rateios_on_charts_account_id"
     t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
@@ -184,11 +197,14 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bills", "charts_accounts"
+  add_foreign_key "bills", "account_plans"
   add_foreign_key "bills", "companies"
   add_foreign_key "bills", "cost_centers"
   add_foreign_key "bills", "participants"
   add_foreign_key "bills", "participants", column: "salesman_id"
+  add_foreign_key "rateios", "account_plans"
+  add_foreign_key "rateios", "bills"
+  add_foreign_key "rateios", "cost_centers"
   add_foreign_key "installments", "account_banks"
   add_foreign_key "installments", "bills"
   add_foreign_key "installments", "type_charges"
