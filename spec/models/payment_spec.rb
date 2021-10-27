@@ -26,6 +26,10 @@ RSpec.describe Payment, type: :model do
       it "Interest Amount" do
         should validate_numericality_of(:interest_amount).is_greater_than_or_equal_to(0)
       end
+
+      it "Increase Amount" do
+        should validate_numericality_of(:increase_amount).is_greater_than_or_equal_to(0)
+      end
     end
 
   end
