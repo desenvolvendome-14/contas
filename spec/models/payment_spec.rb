@@ -12,4 +12,11 @@ RSpec.describe Payment, type: :model do
     it { should belong_to(:charts_accounts_interest_amount).class_name("ChartsAccount") }
     it { should belong_to(:charts_accounts_increase_amount).class_name("ChartsAccount") }
   end
+
+  describe "total_amount calculate before save" do
+    let!(:payment) { create(:payment, amount_paid: 100, discount_amount: 10,
+                            interest_amount: 0, increase_amount: 0) }
+
+    it { expect(payment.total_amount).to eq(90) }
+  end
 end
