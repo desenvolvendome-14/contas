@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: account_plans
@@ -7,6 +9,10 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
-class ChartsAccount < ApplicationRecord
-  has_many :bills
+require "rails_helper"
+
+RSpec.describe AccountPlan, type: :model do
+  describe "::Associations" do
+    it { should have_many(:bills) }
+  end
 end
