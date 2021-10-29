@@ -80,6 +80,15 @@ ActiveRecord::Schema.define(version: 2021_10_26_083519) do
     t.bigint "type_charge_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "discount_due_date"
+    t.float "discount"
+    t.string "notary_title"
+    t.date "send_date"
+    t.float "notary_value"
+    t.string "protested_title"
+    t.date "protest_date"
+    t.float "protest_value"
+    t.string "bank_remittance"
     t.index ["account_bank_id"], name: "index_installments_on_account_bank_id"
     t.index ["bill_id"], name: "index_installments_on_bill_id"
     t.index ["type_charge_id"], name: "index_installments_on_type_charge_id"
