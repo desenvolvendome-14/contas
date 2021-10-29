@@ -28,5 +28,12 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:due_date]).to include("data vencimento não pode ser maior que data atual")
       end
     end
+    context "verify value discount" do
+      it "value negative" do
+        installment = build(:installment,:installment_receivable, discount: -2)
+        expect(installment.save).to be_falsey
+        expect(installment.errors[:discount]).to include("Valor do Desconto não pode ser menor que zero")
+      end
+    end
   end
 end
