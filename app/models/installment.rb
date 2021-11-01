@@ -8,15 +8,20 @@ class Installment < ApplicationRecord
   validate :verify_date
 	validate :positive_value
 	validate :verify_discount, if: :receivable?
+	validate :verify_protest_date, if: :receivable?
 	
   def receivable?
-		self.bill.invoice_receivable?
-		
+		bill.present? && bill.invoice_receivable?
 	end
 
 	def verify_date
 		if due_date.nil? || Date.today > due_date
 			errors.add(:due_date, :verify_date, message: "data vencimento não pode ser maior que data atual")
+		end
+	end
+	def verify_protest_date
+		if protest_date.nil? || Date.today > protest_date
+			errors.add(:protest_date, :protest_date, message: "data do protesto não pode ser maior que data atual")
 		end
 	end
 
