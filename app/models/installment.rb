@@ -11,6 +11,7 @@ class Installment < ApplicationRecord
 	validate :verify_protest_date, if: :receivable?
 	validate :verify_notary_value, if: :receivable?
 	validate :verify_send_date, if: :receivable?
+	validate :verify_protest_value, if: :receivable?
 	
   def receivable?
 		bill.present? && bill.invoice_receivable?
@@ -48,5 +49,9 @@ class Installment < ApplicationRecord
 			errors.add(:notary_value, :verify_notary_value, message: "Valor do Cartório não pode ser menor que zero") 
 		end
 	end
-
+	def verify_protest_value
+		if protest_value < 0
+			errors.add(:protest_value, :verify_protest_value, message: "Valor do Protesto não pode ser menor que zero") 
+		end
+	end
 end
