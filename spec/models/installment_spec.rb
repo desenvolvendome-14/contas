@@ -56,5 +56,12 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:notary_value]).to include("Valor do Cartório não pode ser menor que zero")
       end
     end
+    context "verify protest value" do
+      it "value negative" do
+        installment = build(:installment,:installment_receivable, protest_value: -2)
+        expect(installment.save).to be_falsey
+        expect(installment.errors[:protest_value]).to include("Valor do Protesto não pode ser menor que zero")
+      end
+    end
   end
 end
