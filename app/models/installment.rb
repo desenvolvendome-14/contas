@@ -9,6 +9,7 @@ class Installment < ApplicationRecord
 	validate :positive_value
 	validate :verify_discount, if: :receivable?
 	validate :verify_protest_date, if: :receivable?
+	validate :verify_notary_value, if: :receivable?
 	
   def receivable?
 		bill.present? && bill.invoice_receivable?
@@ -33,6 +34,12 @@ class Installment < ApplicationRecord
 	def  verify_discount
 		if discount.nil? || discount < 0
 			errors.add(:discount, :verify_discount, message: "Valor do Desconto não pode ser menor que zero")  
+		end
+	end
+
+	def verify_notary_value
+		if notary_value < 0
+			errors.add(:notary_value, :verify_notary_value, message: "Valor do Cartório não pode ser menor que zero") 
 		end
 	end
 
