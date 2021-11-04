@@ -37,9 +37,16 @@ RSpec.describe Installment, type: :model do
     end
     context "verify value discount" do
       it "value negative" do
-        installment = build(:installment,:installment_receivable, discount: -2)
+        installment = build(:installment,:installment_receivable, discount: -1)
         expect(installment.save).to be_falsey
         expect(installment.errors[:discount]).to include("Valor do Desconto não pode ser menor que zero")
+      end
+    end
+    context "verify notary value" do
+      it "value negative" do
+        installment = build(:installment,:installment_receivable, notary_value: -2)
+        expect(installment.save).to be_falsey
+        expect(installment.errors[:notary_value]).to include("Valor do Cartório não pode ser menor que zero")
       end
     end
   end
