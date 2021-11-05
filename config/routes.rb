@@ -17,7 +17,10 @@ Rails.application.routes.draw do
       resources :installments
       resources :document_types
       resources :rateios, only: [:index ]
-      resources :payments
+      resources :payments do
+        post :create_payable, on: :collection
+        post :create_invoice_receivable, on: :collection
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
