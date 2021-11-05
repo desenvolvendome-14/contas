@@ -45,12 +45,12 @@ class Installment < ApplicationRecord
 	end
 
 	def verify_notary_value
-		if notary_value < 0
+		if notary_value.nil? || notary_value < 0
 			errors.add(:notary_value, :verify_notary_value, message: "Valor do Cartório não pode ser menor que zero") 
 		end
 	end
 	def verify_protest_value
-		if protest_value < 0
+		if protest_value.nil? || protest_value < 0
 			errors.add(:protest_value, :verify_protest_value, message: "Valor do Protesto não pode ser menor que zero") 
 		end
 	end
