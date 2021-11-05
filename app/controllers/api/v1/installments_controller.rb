@@ -15,11 +15,23 @@ module Api
 
       def installment_params
         params.require(:installment).permit(
+          :name,
+          :note,
+          :due_date,
           :bill_id,
           :account_bank_id,
           :type_charge_id,
           :due_date,
-          :value
+          :value,
+          :discount_due_date,
+          :discount,
+          :notary_title,
+          :send_date,
+          :notary_value,
+          :protested_title,
+          :protest_date,
+          :protest_value,
+          :bank_remittance,
         )
       end
     end
