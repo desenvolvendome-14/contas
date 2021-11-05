@@ -31,7 +31,7 @@ module Api
           :protested_title,
           :protest_date,
           :protest_value,
-          :bank_remittance,
+          :bank_remittance
         )
       end
     end
