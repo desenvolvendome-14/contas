@@ -1,20 +1,10 @@
 module Api
   module V1
     class PaymentsController < ApplicationController
-      def create_payable
+      def create
         @payment = Payment.new(payment_params)
 
-        if @payment&.bill&.payable? && @payment.save
-          render json: @payment, status: :created
-        else
-          render json: @payment.errors, status: :unprocessable_entity
-        end
-      end
-
-      def create_invoice_receivable
-        @payment = Payment.new(payment_receivable)
-
-        if @payment&.bill&.invoice_receivable? && @payment.save
+        if @payment.save
           render json: @payment, status: :created
         else
           render json: @payment.errors, status: :unprocessable_entity
@@ -27,18 +17,12 @@ module Api
         params.require(:payment).permit(
           :pay_date, :accounting_date, :amount_paid,
           :discount_amount, :interest_amount, :increase_amount,
-          :total_amount, :charts_accounts_amount_paid_id,
+          :total_amount, :notary_value, :protest_value, :charts_accounts_amount_paid_id,
           :charts_accounts_discount_amount_id, :charts_accounts_interest_amount_id,
           :charts_accounts_increase_amount_id, :bill_id, :installment_id,
-          :reason_bearish_id, :document_type_id, :account_bank_id
-        )
-      end
-
-      def payment_receivable
-        params.require(:payment).permit(
-          :notary_value, :protest_value,
+          :reason_bearish_id, :document_type_id, :account_bank_id,
           :charts_accounts_notary_value, :charts_accounts_protest_value
-        ).merge(payment_params)
+        )
       end
     end
   end
