@@ -8,6 +8,8 @@ class Payment < ApplicationRecord
   belongs_to :charts_accounts_discount_amount, class_name: 'ChartsAccount'
   belongs_to :charts_accounts_interest_amount, class_name: 'ChartsAccount'
   belongs_to :charts_accounts_increase_amount, class_name: 'ChartsAccount'
+  belongs_to :charts_accounts_notary_value, class_name: 'ChartsAccount', optional: true
+  belongs_to :charts_accounts_protest_value, class_name: 'ChartsAccount', optional: true
 
   validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
   validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }
