@@ -11,6 +11,8 @@ RSpec.describe Payment, type: :model do
     it { should belong_to(:charts_accounts_discount_amount).class_name("ChartsAccount") }
     it { should belong_to(:charts_accounts_interest_amount).class_name("ChartsAccount") }
     it { should belong_to(:charts_accounts_increase_amount).class_name("ChartsAccount") }
+    it { should belong_to(:charts_accounts_notary_value).class_name("ChartsAccount").optional }
+    it { should belong_to(:charts_accounts_protest_value).class_name("ChartsAccount").optional }
   end
 
   describe "Validations" do

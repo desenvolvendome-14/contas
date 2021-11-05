@@ -16,5 +16,13 @@ FactoryBot.define do
     reason_bearish { create(:reason_bearish) }
     document_type { create(:document_type) }
     account_bank { create(:account_bank) }
+
+    trait :invoice_receivable do
+      bill { create(:invoice_receivable) }
+      notary_value { 1.8 }
+      protest_value { 3.0 }
+      charts_accounts_notary_value { create(:charts_account) }
+      charts_accounts_protest_value { create(:charts_account) }
+    end
   end
 end
