@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_083519) do
+ActiveRecord::Schema.define(version: 2021_11_05_082015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,12 +141,18 @@ ActiveRecord::Schema.define(version: 2021_10_26_083519) do
     t.bigint "account_bank_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "notary_value"
+    t.float "protest_value"
+    t.bigint "charts_accounts_notary_value_id"
+    t.bigint "charts_accounts_protest_value_id"
     t.index ["account_bank_id"], name: "index_payments_on_account_bank_id"
     t.index ["bill_id"], name: "index_payments_on_bill_id"
     t.index ["charts_accounts_amount_paid_id"], name: "index_payments_on_charts_accounts_amount_paid_id"
     t.index ["charts_accounts_discount_amount_id"], name: "index_payments_on_charts_accounts_discount_amount_id"
     t.index ["charts_accounts_increase_amount_id"], name: "index_payments_on_charts_accounts_increase_amount_id"
     t.index ["charts_accounts_interest_amount_id"], name: "index_payments_on_charts_accounts_interest_amount_id"
+    t.index ["charts_accounts_notary_value_id"], name: "index_payments_on_charts_accounts_notary_value_id"
+    t.index ["charts_accounts_protest_value_id"], name: "index_payments_on_charts_accounts_protest_value_id"
     t.index ["document_type_id"], name: "index_payments_on_document_type_id"
     t.index ["installment_id"], name: "index_payments_on_installment_id"
     t.index ["reason_bearish_id"], name: "index_payments_on_reason_bearish_id"
@@ -192,6 +198,8 @@ ActiveRecord::Schema.define(version: 2021_10_26_083519) do
   add_foreign_key "payments", "charts_accounts", column: "charts_accounts_discount_amount_id"
   add_foreign_key "payments", "charts_accounts", column: "charts_accounts_increase_amount_id"
   add_foreign_key "payments", "charts_accounts", column: "charts_accounts_interest_amount_id"
+  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_notary_value_id"
+  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_protest_value_id"
   add_foreign_key "payments", "document_types"
   add_foreign_key "payments", "installments"
   add_foreign_key "payments", "reason_bearishes"

@@ -37,7 +37,7 @@ class Bill < ApplicationRecord
   validates :bill_type, :company, :invoice, :type_invoice, :issuance_date, :invoice_value, :increase, :net_value, presence: true
 
   validates :salesman_id, :commission, presence: true, if: :invoice_receivable?
-  validates :scanning_date, :description, :charts_account_id, :cost_center_id, :discount, presence: true, if: proc { invoice_payable? || expense_payable? }
+  validates :scanning_date, :description, :charts_account_id, :cost_center_id, :discount, presence: true, if: :payable?
 
   def invoice_receivable?
     bill_type == "invoice_receivable"
@@ -49,5 +49,9 @@ class Bill < ApplicationRecord
 
   def expense_payable?
     bill_type == "expense_payable"
+  end
+
+  def payable?
+    invoice_payable? || expense_payable?
   end
 end
