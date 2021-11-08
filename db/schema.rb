@@ -37,16 +37,16 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "salesman_id"
     t.bigint "company_id", null: false
-    t.bigint "charts_account_id"
+    t.bigint "chart_accounts_id"
     t.bigint "cost_center_id"
     t.bigint "participant_id"
-    t.index ["charts_account_id"], name: "index_bills_on_charts_account_id"
+    t.index ["chart_accounts_id"], name: "index_bills_on_chart_accounts_id"
     t.index ["company_id"], name: "index_bills_on_company_id"
     t.index ["cost_center_id"], name: "index_bills_on_cost_center_id"
     t.index ["participant_id"], name: "index_bills_on_participant_id"
   end
 
-  create_table "charts_accounts", force: :cascade do |t|
+  create_table "chart_accounts", force: :cascade do |t|
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -130,15 +130,15 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.float "interest_amount"
     t.float "increase_amount"
     t.float "total_amount"
-    t.bigint "charts_accounts_amount_paid_id", null: false
-    t.bigint "charts_accounts_discount_amount_id", null: false
-    t.bigint "charts_accounts_interest_amount_id", null: false
-    t.bigint "charts_accounts_increase_amount_id", null: false
     t.bigint "bill_id", null: false
     t.bigint "installment_id", null: false
     t.bigint "reason_bearish_id", null: false
     t.bigint "document_type_id", null: false
     t.bigint "account_bank_id", null: false
+    t.bigint "charts_accounts_amount_paid_id", null: false
+    t.bigint "charts_accounts_discount_amount_id", null: false
+    t.bigint "charts_accounts_interest_amount_id", null: false
+    t.bigint "charts_accounts_increase_amount_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "notary_value"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
 
   create_table "rateios", force: :cascade do |t|
     t.string "code"
-    t.bigint "charts_account_id", null: false
+    t.bigint "chart_accounts_id", null: false
     t.bigint "cost_center_id", null: false
     t.string "story"
     t.bigint "bill_id", null: false
@@ -168,7 +168,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_rateios_on_bill_id"
-    t.index ["charts_account_id"], name: "index_rateios_on_charts_account_id"
+    t.index ["chart_accounts_id"], name: "index_rateios_on_chart_accounts_id"
     t.index ["cost_center_id"], name: "index_rateios_on_cost_center_id"
   end
 
@@ -184,7 +184,7 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bills", "charts_accounts"
+  add_foreign_key "bills", "chart_accounts", column: "chart_accounts_id"
   add_foreign_key "bills", "companies"
   add_foreign_key "bills", "cost_centers"
   add_foreign_key "bills", "participants"
@@ -194,16 +194,16 @@ ActiveRecord::Schema.define(version: 2021_11_05_082015) do
   add_foreign_key "installments", "type_charges"
   add_foreign_key "payments", "account_banks"
   add_foreign_key "payments", "bills"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_amount_paid_id"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_discount_amount_id"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_increase_amount_id"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_interest_amount_id"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_notary_value_id"
-  add_foreign_key "payments", "charts_accounts", column: "charts_accounts_protest_value_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_amount_paid_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_discount_amount_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_increase_amount_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_interest_amount_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_notary_value_id"
+  add_foreign_key "payments", "chart_accounts", column: "charts_accounts_protest_value_id"
   add_foreign_key "payments", "document_types"
   add_foreign_key "payments", "installments"
   add_foreign_key "payments", "reason_bearishes"
   add_foreign_key "rateios", "bills"
-  add_foreign_key "rateios", "charts_accounts"
+  add_foreign_key "rateios", "chart_accounts", column: "chart_accounts_id"
   add_foreign_key "rateios", "cost_centers"
 end
