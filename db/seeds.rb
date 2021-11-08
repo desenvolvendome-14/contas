@@ -29,12 +29,12 @@ Bill.create!(bill_type: :invoice_receivable, company: Company.first, invoice: "f
 
 Bill.create!(bill_type: :invoice_payable, company: Company.second, invoice: "fatura a pagar",
              type_invoice: :bill_safe, issuance_date: Date.today, invoice_value: 290.99,
-             increase: 0, scanning_date: Date.today, description: "Nada", account_plan_id: 1,
+             increase: 0, scanning_date: Date.today, description: "Nada", chart_account_id: 1,
              cost_center_id: 2, discount: 0, net_value: 290.99)
 
 Bill.create!(bill_type: :expense_payable, company: Company.second, invoice: "despesas a pagar",
              type_invoice: :bill_safe, issuance_date: Date.today, invoice_value: 190.99,
-             increase: 10.00, scanning_date: Date.today, description: "Nada", account_plan_id: 1,
+             increase: 10.00, scanning_date: Date.today, description: "Nada", chart_account_id: 1,
              cost_center_id: 2, discount: 5.00, net_value: 195.99)
 
 DocumentType.create([
