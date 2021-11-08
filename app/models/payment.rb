@@ -4,12 +4,12 @@ class Payment < ApplicationRecord
   belongs_to :reason_bearish
   belongs_to :document_type
   belongs_to :account_bank
-  belongs_to :charts_accounts_amount_paid, class_name: 'ChartsAccount', required: true
-  belongs_to :charts_accounts_discount_amount, class_name: 'ChartsAccount'
-  belongs_to :charts_accounts_interest_amount, class_name: 'ChartsAccount'
-  belongs_to :charts_accounts_increase_amount, class_name: 'ChartsAccount'
-  belongs_to :charts_accounts_notary_value, class_name: 'ChartsAccount', optional: true
-  belongs_to :charts_accounts_protest_value, class_name: 'ChartsAccount', optional: true
+  belongs_to :charts_accounts_amount_paid, class_name: 'ChartAccounts', required: true
+  belongs_to :charts_accounts_discount_amount, class_name: 'ChartAccounts'
+  belongs_to :charts_accounts_interest_amount, class_name: 'ChartAccounts'
+  belongs_to :charts_accounts_increase_amount, class_name: 'ChartAccounts'
+  belongs_to :charts_accounts_notary_value, class_name: 'ChartAccounts', optional: true
+  belongs_to :charts_accounts_protest_value, class_name: 'ChartAccounts', optional: true
 
   validates :amount_paid, numericality: { greater_than_or_equal_to: 0 }
   validates :discount_amount, numericality: { greater_than_or_equal_to: 0 }

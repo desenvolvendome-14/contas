@@ -7,10 +7,10 @@ FactoryBot.define do
     interest_amount { 1.5 }
     increase_amount { 4 }
     total_amount { 1.5 }
-    charts_accounts_amount_paid { create(:charts_account) }
-    charts_accounts_discount_amount { create(:charts_account) }
-    charts_accounts_interest_amount { create(:charts_account) }
-    charts_accounts_increase_amount { create(:charts_account) }
+    charts_accounts_amount_paid { create(:chart_accounts) }
+    charts_accounts_discount_amount { create(:chart_accounts) }
+    charts_accounts_interest_amount { create(:chart_accounts) }
+    charts_accounts_increase_amount { create(:chart_accounts) }
     bill { create(:invoice_payable) }
     installment { create(:installment) }
     reason_bearish { create(:reason_bearish) }
@@ -21,8 +21,8 @@ FactoryBot.define do
       bill { create(:invoice_receivable) }
       notary_value { 1.8 }
       protest_value { 3.0 }
-      charts_accounts_notary_value { create(:charts_account) }
-      charts_accounts_protest_value { create(:charts_account) }
+      charts_accounts_notary_value { create(:chart_accounts) }
+      charts_accounts_protest_value { create(:chart_accounts) }
     end
   end
 end
