@@ -96,7 +96,7 @@ module Api
         params.require(:bill).permit(
           :scanning_date,
           :description,
-          :account_plan_id,
+          :chart_accounts_id,
           :cost_center_id,
           :discount
         ).merge(bill_params)

@@ -26,7 +26,7 @@ class Bill < ApplicationRecord
   belongs_to :company
   belongs_to :participant, optional: true
   belongs_to :salesman, class_name: 'Participant', optional: true
-  belongs_to :charts_account, optional: true
+  belongs_to :chart_accounts, optional: true
   belongs_to :cost_center, optional: true
 
   has_many :rateios
@@ -37,7 +37,7 @@ class Bill < ApplicationRecord
   validates :bill_type, :company, :invoice, :type_invoice, :issuance_date, :invoice_value, :increase, :net_value, presence: true
 
   validates :salesman_id, :commission, presence: true, if: :invoice_receivable?
-  validates :scanning_date, :description, :charts_account_id, :cost_center_id, :discount, presence: true, if: :payable?
+  validates :scanning_date, :description, :chart_accounts_id, :cost_center_id, :discount, presence: true, if: :payable?
 
   def invoice_receivable?
     bill_type == "invoice_receivable"
