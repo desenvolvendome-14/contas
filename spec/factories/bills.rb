@@ -44,7 +44,7 @@ FactoryBot.define do
       bill_type { "invoice_payable" }
       scanning_date { Date.today }
       description { "MyString" }
-      charts_account { create(:charts_account) }
+      account_plan { create(:account_plan) }
       cost_center { create(:cost_center) }
       discount { 1.5 }
     end
@@ -53,7 +53,7 @@ FactoryBot.define do
       bill_type { "expense_payable" }
       scanning_date { Date.today }
       description { "MyString" }
-      charts_account { create(:charts_account) }
+      account_plan { create(:account_plan) }
       cost_center { create(:cost_center) }
       discount { 1.5 }
     end
