@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_25_092013) do
+ActiveRecord::Schema.define(version: 2021_11_05_082015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,10 @@ ActiveRecord::Schema.define(version: 2021_10_25_092013) do
     t.bigint "reason_bearish_id", null: false
     t.bigint "document_type_id", null: false
     t.bigint "account_bank_id", null: false
+    t.bigint "charts_accounts_amount_paid_id", null: false
+    t.bigint "charts_accounts_discount_amount_id", null: false
+    t.bigint "charts_accounts_interest_amount_id", null: false
+    t.bigint "charts_accounts_increase_amount_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "notary_value"

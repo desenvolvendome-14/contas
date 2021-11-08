@@ -7,12 +7,12 @@ RSpec.describe Payment, type: :model do
     it { should belong_to(:installment) }
     it { should belong_to(:document_type) }
     it { should belong_to(:account_bank) }
-    it { should belong_to(:charts_accounts_amount_paid).class_name("ChartsAccount").required }
-    it { should belong_to(:charts_accounts_discount_amount).class_name("ChartsAccount") }
-    it { should belong_to(:charts_accounts_interest_amount).class_name("ChartsAccount") }
-    it { should belong_to(:charts_accounts_increase_amount).class_name("ChartsAccount") }
-    it { should belong_to(:charts_accounts_notary_value).class_name("ChartsAccount").optional }
-    it { should belong_to(:charts_accounts_protest_value).class_name("ChartsAccount").optional }
+    it { should belong_to(:charts_accounts_amount_paid).class_name("ChartAccounts").required }
+    it { should belong_to(:charts_accounts_discount_amount).class_name("ChartAccounts") }
+    it { should belong_to(:charts_accounts_interest_amount).class_name("ChartAccounts") }
+    it { should belong_to(:charts_accounts_increase_amount).class_name("ChartAccounts") }
+    it { should belong_to(:charts_accounts_notary_value).class_name("ChartAccounts").optional }
+    it { should belong_to(:charts_accounts_protest_value).class_name("ChartAccounts").optional }
   end
 
   describe "Validations" do
