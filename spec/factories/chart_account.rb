@@ -10,7 +10,7 @@
 #  updated_at  :datetime         not null
 #
 FactoryBot.define do
-  factory :account_plan do
+  factory :chart_accounts do
     description { "MyString" }
   end
 end
