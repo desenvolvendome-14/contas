@@ -30,6 +30,7 @@ class Bill < ApplicationRecord
   belongs_to :cost_center, optional: true
 
   has_many :rateios
+  has_many :installments
 
   enum bill_type: [:invoice_receivable, :invoice_payable, :expense_payable]
   enum type_invoice: [:bill_safe, :digit]
