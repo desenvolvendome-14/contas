@@ -1,6 +1,12 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
+      before_action :set_bill, only: :index
+
+      def index
+        @installments = @bill.installments
+      end
+
       def create
         @installment = Installment.new(installment_params)
 
@@ -12,6 +18,14 @@ module Api
       end
 
       private
+
+      def set_bill
+        @bill = Bill.find(params[:bill_id])
+      rescue StandardError => e
+        render json: {
+          message: 'Deve enviar o paramentro `bill_id` válido'
+        }, status: :unprocessable_entity
+      end
 
       def installment_params
         params.require(:installment).permit(
