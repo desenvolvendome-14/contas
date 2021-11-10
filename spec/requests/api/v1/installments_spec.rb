@@ -48,9 +48,9 @@ RSpec.describe "/api/v1/installments", type: :request do
         get "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
 
         expect(body_json.installment.to_h.keys).to eq(%i[id name note value due_date
-                                                    discount discount_due_date notary_title
-                                                    notary_value send_date protested_title
-                                                    protest_date protest_value bank_remittance])
+                                                         discount discount_due_date notary_title
+                                                         notary_value send_date protested_title
+                                                         protest_date protest_value bank_remittance])
       end
     end
   end
