@@ -1,10 +1,14 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
-      before_action :set_bill, only: :index
+      before_action :set_bill, only: [:index, :show]
 
       def index
         @installments = @bill.installments
+      end
+
+      def show
+        @installment = @bill.installments.find(params[:id])
       end
 
       def create
