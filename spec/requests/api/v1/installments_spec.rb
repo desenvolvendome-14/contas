@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "/api/v1/installments", type: :request do
+  let(:bill) { create(:invoice_payable) }
+
   let(:payable_valid_attributes) { build(:installment).attributes }
   let(:receivable_valid_attributes) { build(:installment, :installment_receivable).attributes }
 
@@ -11,6 +13,26 @@ RSpec.describe "/api/v1/installments", type: :request do
       type_charge: "",
       due_date: ""
     }
+  end
+
+  describe "GET /index" do
+    before do
+      create_list(:installment, 3, bill: bill)
+    end
+
+    context "get all by Bill" do
+      it "Status successful" do
+        get "/api/v1/installments?bill_id=#{bill.id}", as: :json
+
+        expect(response).to be_successful
+      end
+
+      it "return all installment" do
+        get "/api/v1/installments?bill_id=#{bill.id}", as: :json
+
+        expect(body_json.count).to eq 3
+      end
+    end
   end
 
   describe "POST /create Payable" do
