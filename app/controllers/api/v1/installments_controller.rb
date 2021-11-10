@@ -1,7 +1,7 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
-      before_action :set_bill, only: [:index, :show]
+      before_action :set_bill, only: %i[index show]
 
       def index
         @installments = @bill.installments
@@ -25,9 +25,9 @@ module Api
 
       def set_bill
         @bill = Bill.find(params[:bill_id])
-      rescue StandardError => e
+      rescue StandardError
         render json: {
-          message: 'Deve enviar o paramentro `bill_id` válido'
+          message: "Deve enviar o paramentro `bill_id` válido"
         }, status: :unprocessable_entity
       end
 
