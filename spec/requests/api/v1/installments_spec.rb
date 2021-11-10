@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe "/api/v1/installments", type: :request do
   let(:bill) { create(:invoice_payable) }
+  let(:installment) { create(:installment, bill: bill) }
 
   let(:payable_valid_attributes) { build(:installment).attributes }
   let(:receivable_valid_attributes) { build(:installment, :installment_receivable).attributes }
@@ -31,6 +32,25 @@ RSpec.describe "/api/v1/installments", type: :request do
         get "/api/v1/installments?bill_id=#{bill.id}", as: :json
 
         expect(body_json.count).to eq 3
+      end
+    end
+  end
+
+  describe "GET /show" do
+    context "get installment by Bill" do
+      it "Status successful" do
+        get "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+
+        expect(response).to be_successful
+      end
+
+      it "return all installment" do
+        get "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+
+        expect(body_json.installment.to_h.keys).to eq(%i[id name note value due_date
+                                                    discount discount_due_date notary_title
+                                                    notary_value send_date protested_title
+                                                    protest_date protest_value bank_remittance])
       end
     end
   end
