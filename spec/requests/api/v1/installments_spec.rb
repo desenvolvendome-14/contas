@@ -91,14 +91,14 @@ RSpec.describe "/api/v1/installments", type: :request do
 
   describe "POST /create Receivable" do
     context "with valid parameters" do
-      it "creates a new Api::V1::Installment" do
+      it "creates a new Installment" do
         expect do
           post api_v1_installments_url,
                params: { installment: receivable_valid_attributes }, as: :json
         end.to change(Installment, :count).by(1)
       end
 
-      it "renders a JSON response with the new api/v1_installment" do
+      it "renders a JSON response with the new installment" do
         post api_v1_installments_url,
              params: { installment: receivable_valid_attributes }, as: :json
         expect(response).to have_http_status(:created)
@@ -107,14 +107,14 @@ RSpec.describe "/api/v1/installments", type: :request do
     end
 
     context "with invalid parameters" do
-      it "does not create a new Api::V1::Installment" do
+      it "does not create a new Installment" do
         expect do
           post api_v1_installments_url,
                params: { installment: invalid_attributes }, as: :json
         end.to change(Installment, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new api/v1_installment" do
+      it "renders a JSON response with errors for the new installment" do
         post api_v1_installments_url,
              params: { installment: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
