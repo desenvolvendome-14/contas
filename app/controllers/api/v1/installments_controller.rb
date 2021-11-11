@@ -1,7 +1,7 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
-      before_action :set_bill, only: %i[index show]
+      before_action :set_bill, only: %i[index show update]
       before_action :set_installment, only: %i[show update]
 
       def index
@@ -15,6 +15,14 @@ module Api
 
         if @installment.save
           render json: @installment, status: :created
+        else
+          render json: @installment.errors, status: :unprocessable_entity
+        end
+      end
+
+      def update
+        if @installment.update(installment_params)
+          render json: @installment, status: :ok
         else
           render json: @installment.errors, status: :unprocessable_entity
         end
