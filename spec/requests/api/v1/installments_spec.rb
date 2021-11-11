@@ -159,4 +159,12 @@ RSpec.describe "/api/v1/installments", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    it "destroys the requested installment" do
+      expect do
+        delete "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+      end.to change(Installment, :count).by(0)
+    end
+  end
 end
