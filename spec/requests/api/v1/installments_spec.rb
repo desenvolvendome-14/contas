@@ -12,7 +12,7 @@ RSpec.describe "/api/v1/installments", type: :request do
       bill_id: 0,
       account_bank_id: 0,
       type_charge_id: 0,
-      due_date: ''
+      due_date: ""
     }
   end
 
@@ -128,22 +128,22 @@ RSpec.describe "/api/v1/installments", type: :request do
   describe "PUT /update payable" do
     let(:new_params) do
       {
-        name: 'Updated',
-        value: 9999.99,
+        name: "Updated",
+        value: 9999.99
       }
     end
 
     context "with valid parameters" do
       it "check if installment fields is updated" do
         put url,
-               params: { installment: new_params }, as: :json
-        expect(body_json.name).to eq('Updated')
+            params: { installment: new_params }, as: :json
+        expect(body_json.name).to eq("Updated")
         expect(body_json.value).to eq(9999.99)
       end
 
       it "renders a JSON response" do
         put url,
-             params: { installment: new_params }, as: :json
+            params: { installment: new_params }, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -152,8 +152,7 @@ RSpec.describe "/api/v1/installments", type: :request do
     context "with invalid parameters" do
       it "not update when invalid attributes" do
         put url,
-             params: { installment: invalid_attributes }, as: :json
-
+            params: { installment: invalid_attributes }, as: :json
 
         expect(body_json.due_date).to include("can't be blank")
         expect(body_json.due_date).to include("data vencimento não pode ser maior que data atual")
