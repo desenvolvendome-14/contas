@@ -1,8 +1,8 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
-      before_action :set_bill, only: %i[index show update]
-      before_action :set_installment, only: %i[show update]
+      before_action :set_bill, only: %i[index show update destroy]
+      before_action :set_installment, only: %i[show update destroy]
 
       def index
         @installments = @bill.installments
@@ -26,6 +26,13 @@ module Api
         else
           render json: @installment.errors, status: :unprocessable_entity
         end
+      end
+
+      def destroy
+        @installment.destroy
+        render json: {
+          message: "Excluido"
+        }, status: :ok
       end
 
       private
