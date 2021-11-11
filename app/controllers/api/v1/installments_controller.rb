@@ -2,14 +2,13 @@ module Api
   module V1
     class InstallmentsController < ApplicationController
       before_action :set_bill, only: %i[index show]
+      before_action :set_installment, only: %i[show update]
 
       def index
         @installments = @bill.installments
       end
 
-      def show
-        @installment = @bill.installments.find(params[:id])
-      end
+      def show; end
 
       def create
         @installment = Installment.new(installment_params)
@@ -29,6 +28,10 @@ module Api
         render json: {
           message: "Deve enviar o paramentro `bill_id` válido"
         }, status: :unprocessable_entity
+      end
+
+      def set_installment
+        @installment = @bill.installments.find(params[:id])
       end
 
       def installment_params
