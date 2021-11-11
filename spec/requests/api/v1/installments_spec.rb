@@ -16,6 +16,8 @@ RSpec.describe "/api/v1/installments", type: :request do
     }
   end
 
+  let(:url) { "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}" }
+
   describe "GET /index" do
     before do
       create_list(:installment, 3, bill: bill)
@@ -39,13 +41,13 @@ RSpec.describe "/api/v1/installments", type: :request do
   describe "GET /show" do
     context "get installment by Bill" do
       it "Status successful" do
-        get "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+        get url, as: :json
 
         expect(response).to be_successful
       end
 
       it "return all installment" do
-        get "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+        get url, as: :json
 
         expect(body_json.installment.to_h.keys).to eq(%i[id name note value due_date
                                                          discount discount_due_date notary_title
@@ -133,14 +135,14 @@ RSpec.describe "/api/v1/installments", type: :request do
 
     context "with valid parameters" do
       it "check if installment fields is updated" do
-        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+        put url,
                params: { installment: new_params }, as: :json
         expect(body_json.name).to eq('Updated')
         expect(body_json.value).to eq(9999.99)
       end
 
       it "renders a JSON response" do
-        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+        put url,
              params: { installment: new_params }, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -149,7 +151,7 @@ RSpec.describe "/api/v1/installments", type: :request do
 
     context "with invalid parameters" do
       it "not update when invalid attributes" do
-        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+        put url,
              params: { installment: invalid_attributes }, as: :json
 
 
@@ -163,7 +165,7 @@ RSpec.describe "/api/v1/installments", type: :request do
   describe "DELETE /destroy" do
     it "destroys the requested installment" do
       expect do
-        delete "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}", as: :json
+        delete url, as: :json
       end.to change(Installment, :count).by(0)
     end
   end
