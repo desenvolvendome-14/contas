@@ -9,10 +9,10 @@ RSpec.describe "/api/v1/installments", type: :request do
 
   let(:invalid_attributes) do
     {
-      bill: "",
-      account_bank: "",
-      type_charge: "",
-      due_date: ""
+      bill_id: 0,
+      account_bank_id: 0,
+      type_charge_id: 0,
+      due_date: ''
     }
   end
 
@@ -119,6 +119,43 @@ RSpec.describe "/api/v1/installments", type: :request do
              params: { installment: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to include("application/json")
+      end
+    end
+  end
+
+  describe "PUT /update payable" do
+    let(:new_params) do
+      {
+        name: 'Updated',
+        value: 9999.99,
+      }
+    end
+
+    context "with valid parameters" do
+      it "check if installment fields is updated" do
+        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+               params: { installment: new_params }, as: :json
+        expect(body_json.name).to eq('Updated')
+        expect(body_json.value).to eq(9999.99)
+      end
+
+      it "renders a JSON response" do
+        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+             params: { installment: new_params }, as: :json
+        expect(response).to have_http_status(:ok)
+        expect(response.content_type).to match(a_string_including("application/json"))
+      end
+    end
+
+    context "with invalid parameters" do
+      it "not update when invalid attributes" do
+        put "/api/v1/installments/#{installment.id}?bill_id=#{bill.id}",
+             params: { installment: invalid_attributes }, as: :json
+
+
+        expect(body_json.due_date).to include("can't be blank")
+        expect(body_json.due_date).to include("data vencimento não pode ser maior que data atual")
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
