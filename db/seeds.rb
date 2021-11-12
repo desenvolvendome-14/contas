@@ -46,3 +46,4 @@ DocumentType.create([
                       { description: "Pix" }, { description: "Dinheiro" },
                       { description: "Cartão de Crédito" }, { description: "Cheque" }
                     ])
+Rateio.create(code: "123", story: "testando")
