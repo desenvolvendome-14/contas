@@ -1,6 +1,15 @@
 module Api
   module V1
     class InstallmentsController < ApplicationController
+      before_action :set_bill, only: %i[index show update destroy]
+      before_action :set_installment, only: %i[show update destroy]
+
+      def index
+        @installments = @bill.installments
+      end
+
+      def show; end
+
       def create
         @installment = Installment.new(installment_params)
 
@@ -11,7 +20,34 @@ module Api
         end
       end
 
+      def update
+        if @installment.update(installment_params)
+          render json: @installment, status: :ok
+        else
+          render json: @installment.errors, status: :unprocessable_entity
+        end
+      end
+
+      def destroy
+        @installment.destroy
+        render json: {
+          message: "Excluido"
+        }, status: :ok
+      end
+
       private
+
+      def set_bill
+        @bill = Bill.find(params[:bill_id])
+      rescue StandardError
+        render json: {
+          message: "Deve enviar o paramentro `bill_id` válido"
+        }, status: :unprocessable_entity
+      end
+
+      def set_installment
+        @installment = @bill.installments.find(params[:id])
+      end
 
       def installment_params
         params.require(:installment).permit(
