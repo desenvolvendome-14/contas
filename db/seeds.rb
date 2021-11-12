@@ -10,7 +10,7 @@
 
 Company.create!([{ name: Faker::Company.name }])
 
-10.times do |i|
+10.times do |_i|
   Participant.create(name: Faker::Name.name, person_type: :salesman)
 end
 Participant.create(name: "Fulano", person_type: :salesman)
@@ -49,4 +49,3 @@ DocumentType.create([
                       { description: "Pix" }, { description: "Dinheiro" },
                       { description: "Cartão de Crédito" }, { description: "Cheque" }
                     ])
-Rateio.create(code: "123", story: "testando")
