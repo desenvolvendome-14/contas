@@ -1,13 +1,4 @@
-# == Route Map
-#
-
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      resources :rateios, only: [:index, :show, :destroy ] do
-      end
-    end
-  end
   namespace :api do
     namespace :v1 do
       resources :bills, only: [:index, :show, :destroy] do
