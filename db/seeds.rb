@@ -10,7 +10,7 @@
 
 Company.create!([{ name: Faker::Company.name }])
 
-10.times do |_i|
+10.times do
   Participant.create(name: Faker::Name.name, person_type: :salesman)
 end
 Participant.create(name: "Fulano", person_type: :salesman)
@@ -25,7 +25,7 @@ end
   CostCenter.create([{ description: "Cost CEnter #{i}" }])
 end
 
-10.times do |i|
+10.times do
   AccountBank.create(description: Faker::Bank.name)
 end
 
