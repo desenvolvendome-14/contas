@@ -10,9 +10,6 @@
 
 Company.create!([{ name: Faker::Company.name }])
 
-10.times do
-  Participant.create(name: Faker::Name.name, person_type: :salesman)
-end
 Participant.create(name: "Fulano", person_type: :salesman)
 Participant.create(name: "Beltrano", person_type: :client)
 Participant.create(name: "Deltrano", person_type: :company)
