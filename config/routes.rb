@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
       resources :installments
       resources :document_types
-      resources :rateios, only: [:index ]
+      resources :rateios, only: [:index, :show, :destroy ]
       resources :payments do
         post :create_payable, on: :collection
         post :create_invoice_receivable, on: :collection
