@@ -40,9 +40,10 @@ module Api
       #
       #   # DELETE /api/v1/rateios/1
       #   # DELETE /api/v1/rateios/1.json
-      #   def destroy
-      #     @api_v1_rateio.destroy
-      #   end
+      def destroy
+        @rateio.destroy
+      end
+
       #
       #   private
       #

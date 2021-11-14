@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-class Rateio < ApplicationRecord
-  validates :value_rateio, :obs, presence: true
-=======
+
 # == Schema Information
 #
 # Table name: ratios
@@ -37,5 +34,4 @@ class Rateio < ApplicationRecord
   validates :chart_accounts_id, :cost_center_id, :bill, presence: true
   validates :value, presence: true
 
->>>>>>> Feature/create rateio (#31)
 end

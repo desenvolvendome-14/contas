@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-FactoryBot.define do
-  factory :rateio do
-    value_rateio { "9.99" }
-    obs { "MyText" }
-=======
 # frozen_string_literal: true
 
 # == Schema Information
@@ -40,6 +34,5 @@ FactoryBot.define do
     story { "MyString" }
     bill { create(:invoice_payable) }
     value { "9.99" }
->>>>>>> Feature/create rateio (#31)
   end
 end
