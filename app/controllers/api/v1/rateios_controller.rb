@@ -13,7 +13,8 @@ module Api
 
       # GET /api/v1/rateios/1
       # GET /api/v1/rateios/1.json
-      #   def show; end
+      def show; end
+
       #
       #   # POST /api/v1/rateios
       #   # POST /api/v1/rateios.json
@@ -46,14 +47,15 @@ module Api
       #   private
       #
       #   # Use callbacks to share common setup or constraints between actions.
-      #   def set_api_v1_rateio
-      #     @api_v1_rateio = Api::V1::Rateio.find(params[:id])
-      #   end
+      def set_rateio
+        @rateio = Rateio.find(params[:id])
+      end
+
       #
       #   # Only allow a list of trusted parameters through.
-      #   def api_v1_rateio_params
-      #     params.fetch(:api_v1_rateio, {})
-      #   end
+      def rateio_params
+        params.fetch(:rateio, {})
+      end
     end
   end
 end
