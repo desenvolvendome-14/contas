@@ -13,23 +13,25 @@ module Api
 
       # GET /api/v1/rateios/1
       # GET /api/v1/rateios/1.json
-        def show; end
+      def show; end
 
-        def destroy
-          @rateio.destroy
-        end
-      #
+      def destroy
+        @rateio.destroy
+      end
+
       private
+
       # #
       # #   # Use callbacks to share common setup or constraints between actions.
-        def set_rateio
-          @rateios = Rateio.find(params[:id])
-        end
+      def set_rateio
+        @rateios = Rateio.find(params[:id])
+      end
+
       # #
       # #   # Only allow a list of trusted parameters through.
-        def rateio_params
-          params.fetch(:rateio, {})
-        end
+      def rateio_params
+        params.fetch(:rateio, {})
+      end
     end
   end
 end
