@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: rateios
+# Table name: ratios
 #
 #  id              :bigint           not null, primary key
 #  code            :string
