@@ -26,7 +26,7 @@ class Bill < ApplicationRecord
   belongs_to :company
   belongs_to :participant, optional: true
   belongs_to :salesman, class_name: 'Participant', optional: true
-  belongs_to :chart_accounts, optional: true
+  belongs_to :account_plan, optional: true
   belongs_to :cost_center, optional: true
 
   has_many :rateios
