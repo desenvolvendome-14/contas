@@ -27,8 +27,8 @@ module Api
         end
       # #
       # #   # Only allow a list of trusted parameters through.
-        def api_rateio_params
-          params.fetch(:api_v1_rateio, {})
+        def rateio_params
+          params.fetch(:rateio, {})
         end
     end
   end

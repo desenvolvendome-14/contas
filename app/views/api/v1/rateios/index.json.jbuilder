@@ -1,1 +1,1 @@
-json.array! @rateios, partial: "rateio", as: :rateio
+json.array! @rateio, partial: "rateio", as: :rateio
