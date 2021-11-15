@@ -92,12 +92,12 @@ RSpec.describe "rateios", type: :request do
   #     end
   #   end
   #
-  #   describe "DELETE /destroy" do
-  #     it "destroys the requested api/v1_rateio" do
-  #       rateio = Api::V1::Rateio.create! valid_attributes
-  #       expect {
-  #         delete api_v1_rateio_url(api_v1_rateio), headers: valid_headers, as: :json
-  #       }.to change(Api::V1::Rateio, :count).by(-1)
-  #     end
-  # end
+    describe "DELETE /destroy" do
+      it "destroys the requested api/v1_rateio" do
+        rateio = Api::V1::Rateio.create! valid_attributes
+        expect {
+          delete api_v1_rateio_url(api_v1_rateio), headers: valid_headers, as: :json
+        }.to change(Api::V1::Rateio, :count).by(-1)
+      end
+  end
 end
