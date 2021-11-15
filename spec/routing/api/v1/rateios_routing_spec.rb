@@ -8,9 +8,9 @@ RSpec.describe Api::V1::RateiosController, type: :routing do
       expect(get: "/api/v1/rateios").to route_to("api/v1/rateios#index")
     end
 
-    # it "routes to #show" do
-    #   expect(get: "/api/v1/rateios/1").to route_to("api/v1/rateios#show", id: "1")
-    # end
+    it "routes to #show" do
+      expect(get: "/api/v1/rateios/1").to route_to("api/v1/rateios#show", id: "1")
+    end
     #
     # it "routes to #create" do
     #   expect(post: "/api/v1/rateios").to route_to("api/v1/rateios#create")

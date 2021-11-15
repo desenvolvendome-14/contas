@@ -17,8 +17,7 @@ Rails.application.routes.draw do
       resources :installments
       resources :document_types
       resources :reason_bearishes
-      resources :rateios, only: [:index ]
-      resources :cost_center
+      resources :rateios, only: [:index, :show, :create, :destroy ]
       resources :payments do
         post :create_payable, on: :collection
         post :create_invoice_receivable, on: :collection
