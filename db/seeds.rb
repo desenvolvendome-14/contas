@@ -41,6 +41,4 @@ DocumentType.create([
                       { description: "Pix" }, { description: "Dinheiro" },
                       { description: "Cartão de Crédito" }, { description: "Cheque" }
                     ])
-2.times do
   Rateio.create(id: 1, code: "123", story: "Hemershon", value: 120.00, bill_id: 1, cost_center_id: 1)
-end
