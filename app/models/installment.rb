@@ -3,6 +3,7 @@ class Installment < ApplicationRecord
   belongs_to :account_bank
   belongs_to :type_charge
 
+	has_many :payments
 
 	validates :bill, :account_bank, :type_charge, :due_date, presence: true
   validate :verify_date
