@@ -10,19 +10,22 @@ module Api
       def index
         @rateios = Rateio.all
       end
+
       # GET /api/v1/rateios/1
       # GET /api/v1/rateios/1.json
-      def show; end
+        def show; end
+      #
       #   # POST /api/v1/rateios
       #   # POST /api/v1/rateios.json
-      def create
-        @rateio = Rateio.new(rateio_params)
-        if @rateio.save
-          render :show, status: :created, location: @rateio
-        else
-          render json: @rateio.errors, status: :unprocessable_entity
+        def create
+          @rateio = Rateio.new(rateio_params)
+
+          if @rateio.save
+            render :show, status: :created, location: @rateio
+          else
+            render json: @rateio.errors, status: :unprocessable_entity
+          end
         end
-      end
       #
       #   # PATCH/PUT /api/v1/rateios/1
       #   # PATCH/PUT /api/v1/rateios/1.json
@@ -36,20 +39,21 @@ module Api
       #
       #   # DELETE /api/v1/rateios/1
       #   # DELETE /api/v1/rateios/1.json
-      def destroy
-        @rateio.destroy
-      end
+        def destroy
+          @rateio.destroy
+        end
 
-      private
+        private
 
       #   # Use callbacks to share common setup or constraints between actions.
-      def set_rateio
-        @rateio = Rateio.find(params[:id])
-      end
+        def set_rateio
+          @rateio = Rateio.find(params[:id])
+        end
+      #
       #   # Only allow a list of trusted parameters through.
-      def rateio_params
-        params.require(:rateio).permit(:id, :code, :story, :value)
-      end
+        def rateio_params
+          params.require(:rateio).permit(:id, :code, :story, :value)
+        end
     end
   end
 end
