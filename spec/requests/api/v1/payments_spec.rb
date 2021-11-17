@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "/api/v1/payments", type: :request do
+  let(:payment) { create(:payment) }
+
   let(:payable_valid_attributes) { build(:payment).attributes }
   let(:receivable_valid_attributes) { build(:payment, :invoice_receivable).attributes }
 
@@ -78,8 +80,6 @@ RSpec.describe "/api/v1/payments", type: :request do
   end
 
   describe "PUT /update" do
-    let(:payment) { create(:payment) }
-
     let(:new_params) do
       {
         amount_paid: 9999.99,
@@ -111,6 +111,14 @@ RSpec.describe "/api/v1/payments", type: :request do
         expect(body_json.pay_date).to include("Data de Pagamento não pode ser maior que data atual")
         expect(response).to have_http_status(:unprocessable_entity)
       end
+    end
+  end
+
+  describe "DELETE /destroy" do
+    it "destroys the requested installment" do
+      expect do
+        delete api_v1_payment_url(payment), as: :json
+      end.to change(Payment, :count).by(0)
     end
   end
 end
