@@ -1,7 +1,7 @@
 module Api
   module V1
     class PaymentsController < ApplicationController
-      before_action :set_payment, only: %i[update]
+      before_action :set_payment, only: %i[update destroy]
 
       def create
         @payment = Payment.new(payment_params)
@@ -19,6 +19,13 @@ module Api
         else
           render json: @payment.errors, status: :unprocessable_entity
         end
+      end
+
+      def destroy
+        @payment.destroy
+        render json: {
+          message: "Excluido"
+        }, status: :ok
       end
 
       private
