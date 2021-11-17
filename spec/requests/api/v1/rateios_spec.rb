@@ -17,9 +17,8 @@ RSpec.describe "rateios", type: :request do
 
   # describe "GET /show" do
   #     it "renders a successful response" do
-  #       create_list(:rateio, 2)
   #       @rateio = Rateio.create! valid_attributes
-  #       get api_v1_rateios_url(api_v1_rateio), as: :json
+  #       get api_v1_rateio_url(api_v1_rateio), as: :json
   #       expect(response).to be_successful
   #     end
   #   end
