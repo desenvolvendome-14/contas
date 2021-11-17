@@ -1,19 +1,20 @@
 require "rails_helper"
 
 RSpec.describe "rateios", type: :request do
+  pending "add some examples to (or delete) #{__FILE__}"
   #
-  # let(:code_valid_attributes) { build(:code).attributes }
+  # # let(:code_valid_attributes) { build(:code).attributes }
+  # # end
+  #
+  # describe "GET /index" do
+  #   before :each do
+  #     # create_list(:rateio, 3)
+  #   end
+  #   it "renders a successful response" do
+  #     get api_v1_rateios_url, as: :json
+  #     expect(response).to be_successful
+  #   end
   # end
-
-  describe "GET /index" do
-    before :each do
-      create_list(:rateio, 3)
-    end
-    it "renders a successful response" do
-      get api_v1_rateios_url, as: :json
-      expect(response).to be_successful
-    end
-  end
 
   # describe "GET /show" do
   #     it "renders a successful response" do
