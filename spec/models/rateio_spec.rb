@@ -29,24 +29,16 @@
 require "rails_helper"
 
 RSpec.describe Rateio, type: :model do
-  describe 'associations' do
-    it { expect(create(:rateio)).to belong_to(:chart_accounts) }
-    it { expect(create(:rateio)).to belong_to(:cost_center) }
-    it { expect(create(:rateio)).to belong_to(:bill)}
+  describe '::Associations' do
+    it { should belong_to(:chart_accounts) }
+    it { should belong_to(:cost_center) }
+    it { should belong_to(:bill) }
   end
+
   describe "Validations" do
     it { is_expected.to validate_presence_of :code }
     it { is_expected.to validate_presence_of :story }
-    it { is_expected.to validate_presence_of :value }
+    it { should validate_numericality_of(:value).only_integer  }
   end
 
-
-  context "Positive value" do
-    it "value positive" do
-      rateio = build(:rateio, value: 0)
-      expect(rateio.save).to be_falsey
-      expect(rateio.errors[:value]).to include("valor não pode ser negativo")
-    end
-
-  end
 end

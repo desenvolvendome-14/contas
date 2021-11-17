@@ -31,12 +31,6 @@ class Rateio < ApplicationRecord
 
   validates :code, :story, presence: true
   validates :chart_accounts_id, :cost_center_id, :bill, presence: true
-  validates :value, presence: true
-
-  def positive_value
-    if value.nil? || value <= 0
-      errors.add(value, :positive_value, message: "Valor não pode ser negativo")
-    end
-  end
+  validates_numericality_of :value, only_integer: true
 
 end
