@@ -29,7 +29,7 @@
 require "rails_helper"
 
 RSpec.describe Rateio, type: :model do
-  describe '::Associations' do
+  describe "::Associations" do
     it { should belong_to(:chart_accounts) }
     it { should belong_to(:cost_center) }
     it { should belong_to(:bill) }
@@ -38,7 +38,6 @@ RSpec.describe Rateio, type: :model do
   describe "Validations" do
     it { is_expected.to validate_presence_of :code }
     it { is_expected.to validate_presence_of :story }
-    it { should validate_numericality_of(:value).only_integer  }
+    it { should validate_numericality_of(:value).only_integer }
   end
-
 end
