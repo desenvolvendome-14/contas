@@ -27,10 +27,11 @@ RSpec.describe "/api/v1/payments", type: :request do
         get api_v1_payment_url(payment), as: :json
 
         expect(body_json.payment.to_h.keys).to eq(%i[id pay_date accounting_date discount_amount interest_amount
-                                                         increase_amount total_amount notary_value protest_value
-                                                         charts_accounts_amount_paid_id charts_accounts_discount_amount_id
-                                                         charts_accounts_interest_amount_id charts_accounts_increase_amount_id
-                                                         charts_accounts_notary_value_id charts_accounts_protest_value_id])
+                                                     increase_amount total_amount notary_value protest_value
+                                                     charts_accounts_amount_paid_id charts_accounts_discount_amount_id
+                                                     charts_accounts_interest_amount_id
+                                                     charts_accounts_increase_amount_id
+                                                     charts_accounts_notary_value_id charts_accounts_protest_value_id])
       end
     end
   end
