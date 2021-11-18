@@ -15,6 +15,26 @@ RSpec.describe "/api/v1/payments", type: :request do
     }
   end
 
+  describe "GET /show" do
+    context "get installment by Bill" do
+      it "Status successful" do
+        get api_v1_payment_url(payment), as: :json
+
+        expect(response).to be_successful
+      end
+
+      it "return all installment" do
+        get api_v1_payment_url(payment), as: :json
+
+        expect(body_json.payment.to_h.keys).to eq(%i[id pay_date accounting_date discount_amount interest_amount
+                                                         increase_amount total_amount notary_value protest_value
+                                                         charts_accounts_amount_paid_id charts_accounts_discount_amount_id
+                                                         charts_accounts_interest_amount_id charts_accounts_increase_amount_id
+                                                         charts_accounts_notary_value_id charts_accounts_protest_value_id])
+      end
+    end
+  end
+
   describe "POST /create payable" do
     context "with valid parameters" do
       it "creates a new Payment" do
