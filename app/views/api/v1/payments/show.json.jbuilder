@@ -16,7 +16,7 @@ json.payment do
   json.charts_accounts_protest_value_id @payment.charts_accounts_protest_value_id
 end
 
-json.installment @payment.installment_id, :name
+json.installment @payment.installment, :name
 json.bill @payment.bill, :invoice, :bill_type
 json.account_bank @payment.account_bank, :description
 json.document_type @payment.document_type, :description
