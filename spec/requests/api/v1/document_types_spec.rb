@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "/api/v1/document_types", type: :request do
-  before :each do
+  before do
     create_list(:document_type, 2)
   end
 

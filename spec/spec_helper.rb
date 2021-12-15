@@ -16,11 +16,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'simplecov'
-SimpleCov.start 'rails' do
+require "simplecov"
+SimpleCov.start "rails" do
   add_filter [
-               'app/controllers/concern'
-             ]
+    "app/controllers/concern"
+  ]
 end
 
 RSpec.configure do |config|

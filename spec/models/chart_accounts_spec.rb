@@ -13,6 +13,6 @@ require "rails_helper"
 
 RSpec.describe ChartAccounts, type: :model do
   describe "::Associations" do
-    it { should have_many(:bills) }
+    it { is_expected.to have_many(:bills) }
   end
 end

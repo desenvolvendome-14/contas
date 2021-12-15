@@ -28,6 +28,7 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:due_date]).to include("data vencimento não pode ser maior que data atual")
       end
     end
+
     context "verify send date" do
       it "send date" do
         installment = build(:installment, :installment_receivable, send_date: "2021-10-10")
@@ -35,6 +36,7 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:send_date]).to include("data de envio não pode ser maior que data atual")
       end
     end
+
     context "verify protest_date" do
       it "protest date" do
         installment = build(:installment, :installment_receivable, protest_date: "2020-10-10")
@@ -42,6 +44,7 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:protest_date]).to include("data do protesto não pode ser maior que data atual")
       end
     end
+
     context "verify value discount" do
       it "value negative" do
         installment = build(:installment, :installment_receivable, discount: -1)
@@ -49,6 +52,7 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:discount]).to include("Valor do Desconto não pode ser menor que zero")
       end
     end
+
     context "verify notary value" do
       it "value negative" do
         installment = build(:installment, :installment_receivable, notary_value: -2)
@@ -56,6 +60,7 @@ RSpec.describe Installment, type: :model do
         expect(installment.errors[:notary_value]).to include("Valor do Cartório não pode ser menor que zero")
       end
     end
+
     context "verify protest value" do
       it "value negative" do
         installment = build(:installment, :installment_receivable, protest_value: -2)

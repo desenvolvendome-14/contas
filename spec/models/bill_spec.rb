@@ -39,7 +39,7 @@ RSpec.describe Bill, type: :model do
     end
 
     context "::Associations" do
-      it { should belong_to(:company) }
+      it { is_expected.to belong_to(:company) }
     end
   end
 

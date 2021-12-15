@@ -10,7 +10,7 @@ RSpec.describe "API::v1::Bills", type: :request do
   end
 
   describe "GET /index" do
-    before :each do
+    before do
       create_list(:invoice_receivable, 2)
       create_list(:invoice_payable, 3)
       create_list(:expense_payable, 4)
