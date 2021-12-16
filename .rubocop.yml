@@ -55,3 +55,17 @@ Metrics/AbcSize:
 
 Style/Documentation:
   Enabled: false
+
+Metrics/LineLength:
+  Max: 125
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/NamedSubject:
+  Enabled: false
+
+
