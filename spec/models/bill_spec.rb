@@ -28,7 +28,7 @@ require "rails_helper"
 
 RSpec.describe Bill, type: :model do
   describe "General" do
-    context "::Validations" do
+    context "when ::Validations" do
       it { is_expected.to validate_presence_of :bill_type }
       it { is_expected.to validate_presence_of :invoice }
       it { is_expected.to validate_presence_of :type_invoice }
@@ -38,56 +38,56 @@ RSpec.describe Bill, type: :model do
       it { is_expected.to validate_presence_of(:net_value) }
     end
 
-    context "::Associations" do
+    context "when ::Associations" do
       it { is_expected.to belong_to(:company) }
     end
   end
 
   describe ":invoice_receivable" do
-    before do
-      @invoice_receivable = create(:invoice_receivable)
+    context "when ::Validations" do
+      let(:invoice_receivable) { create(:invoice_receivable) }
+
+      it { expect(invoice_receivable).to validate_presence_of(:commission) }
     end
 
-    context "::Validations" do
-      it { expect(@invoice_receivable).to validate_presence_of(:commission) }
-    end
+    context "when ::Associations" do
+      let(:invoice_receivable) { create(:invoice_receivable) }
 
-    context "::Associations" do
-      it { expect(@invoice_receivable).to belong_to(:salesman).class_name("Participant").optional }
+      it { expect(invoice_receivable).to belong_to(:salesman).class_name("Participant").optional }
     end
   end
 
   describe ":invoice_payable" do
-    before do
-      @invoice_payable = create(:invoice_payable)
+    context "when ::Validations" do
+      let(:invoice_payable) { create(:invoice_payable) }
+
+      it { expect(invoice_payable).to validate_presence_of(:scanning_date) }
+      it { expect(invoice_payable).to validate_presence_of(:description) }
+      it { expect(invoice_payable).to validate_presence_of(:discount) }
     end
 
-    context "::Validations" do
-      it { expect(@invoice_payable).to validate_presence_of(:scanning_date) }
-      it { expect(@invoice_payable).to validate_presence_of(:description) }
-      it { expect(@invoice_payable).to validate_presence_of(:discount) }
-    end
+    context "when ::Associations" do
+      let(:invoice_payable) { create(:invoice_payable) }
 
-    context "::Associations" do
-      it { expect(@invoice_payable).to belong_to(:chart_accounts).optional }
-      it { expect(@invoice_payable).to belong_to(:cost_center).optional }
+      it { expect(invoice_payable).to belong_to(:chart_accounts).optional }
+      it { expect(invoice_payable).to belong_to(:cost_center).optional }
     end
   end
 
   describe ":expense_payable" do
-    before do
-      @expense_payable = create(:expense_payable)
+    context "when ::Validations" do
+      let!(:expense_payable) { create(:expense_payable) }
+
+      it { expect(expense_payable).to validate_presence_of(:scanning_date) }
+      it { expect(expense_payable).to validate_presence_of(:description) }
+      it { expect(expense_payable).to validate_presence_of(:discount) }
     end
 
-    context "::Validations" do
-      it { expect(@expense_payable).to validate_presence_of(:scanning_date) }
-      it { expect(@expense_payable).to validate_presence_of(:description) }
-      it { expect(@expense_payable).to validate_presence_of(:discount) }
-    end
+    context "when ::Associations" do
+      let!(:expense_payable) { create(:expense_payable) }
 
-    context "::Associations" do
-      it { expect(@expense_payable).to belong_to(:chart_accounts).optional }
-      it { expect(@expense_payable).to belong_to(:cost_center).optional }
+      it { expect(expense_payable).to belong_to(:chart_accounts).optional }
+      it { expect(expense_payable).to belong_to(:cost_center).optional }
     end
   end
 end
