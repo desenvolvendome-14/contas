@@ -9,6 +9,6 @@ RSpec.describe Participant, type: :model do
   end
 
   describe "::Associations" do
-    it { should have_many(:bills) }
+    it { is_expected.to have_many(:bills) }
   end
 end

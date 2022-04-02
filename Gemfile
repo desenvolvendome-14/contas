@@ -28,6 +28,7 @@ gem "bootsnap", ">= 1.4.4", require: false
 gem "rack-cors"
 
 gem "rubocop-rails"
+gem "rubocop-rspec"
 
 # Use for read file .env
 gem "dotenv-rails", "~> 2.5"

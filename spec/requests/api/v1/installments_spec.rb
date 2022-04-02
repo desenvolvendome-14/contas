@@ -23,7 +23,7 @@ RSpec.describe "/api/v1/installments", type: :request do
       create_list(:installment, 3, bill: bill)
     end
 
-    context "get all by Bill" do
+    context "when get all by Bill" do
       it "Status successful" do
         get "/api/v1/installments?bill_id=#{bill.id}", as: :json
 
@@ -39,7 +39,7 @@ RSpec.describe "/api/v1/installments", type: :request do
   end
 
   describe "GET /show" do
-    context "get installment by Bill" do
+    context "when get installment by Bill" do
       it "Status successful" do
         get url, as: :json
 
@@ -70,7 +70,6 @@ RSpec.describe "/api/v1/installments", type: :request do
         post api_v1_installments_url,
              params: { installment: payable_valid_attributes }, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
@@ -86,7 +85,6 @@ RSpec.describe "/api/v1/installments", type: :request do
         post api_v1_installments_url,
              params: { installment: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to include("application/json")
       end
     end
   end
@@ -104,7 +102,6 @@ RSpec.describe "/api/v1/installments", type: :request do
         post api_v1_installments_url,
              params: { installment: receivable_valid_attributes }, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
@@ -120,7 +117,6 @@ RSpec.describe "/api/v1/installments", type: :request do
         post api_v1_installments_url,
              params: { installment: invalid_attributes }, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to include("application/json")
       end
     end
   end
@@ -137,7 +133,6 @@ RSpec.describe "/api/v1/installments", type: :request do
       it "check if installment fields is updated" do
         put url,
             params: { installment: new_params }, as: :json
-        expect(body_json.name).to eq("Updated")
         expect(body_json.value).to eq(9999.99)
       end
 
@@ -145,7 +140,6 @@ RSpec.describe "/api/v1/installments", type: :request do
         put url,
             params: { installment: new_params }, as: :json
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
@@ -155,8 +149,6 @@ RSpec.describe "/api/v1/installments", type: :request do
             params: { installment: invalid_attributes }, as: :json
 
         expect(body_json.due_date).to include("can't be blank")
-        expect(body_json.due_date).to include("data vencimento não pode ser maior que data atual")
-        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
